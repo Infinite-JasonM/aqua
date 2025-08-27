@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아쿠아홀딩스 통합 뉴스룸</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+        }
+        .portal-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .news-list li {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+        
+        <!-- 헤더 섹션 -->
+        <header class="text-center mb-10 md:mb-16">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">아쿠아홀딩스 통합 뉴스룸</h1>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400">주요 포털 언론 보도 및 공식 채널</p>
+        </header>
+
+        <!-- 포털 링크 그리드 (2열) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            
+            <!-- 네이버 카드 -->
+            <div class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-[#03C75A] mb-4">NAVER News</h2>
+                <ul class="news-list text-left space-y-3 text-gray-700 dark:text-gray-300 flex-grow">
+                    <li><a href="https://www.issuenbiz.com/news/articleView.html?idxno=65378" target="_blank" class="hover:underline">아쿠아홀딩스, 3회차 현장 견학 성료...국내외 최상위 전문가들 대거 참석</a></li>
+                    <li><a href="https://www.beyondpost.co.kr/view.php?ud=20250813083536464346a9e4dd7f_30" target="_blank" class="hover:underline">아쿠아홀딩스, 하남 '제일가' 대형마트와 공동운영 계약 체결</a></li>
+                    <li><a href="https://www.issuenbiz.com/news/articleView.html?idxno=65669" target="_blank" class="hover:underline">아쿠아홀딩스, 세계평화UN장학재단 공식 후원사로 선정…</a></li>
+                </ul>
+                <a href="https://search.naver.com/search.naver?where=news&query=아쿠아홀딩스" target="_blank" class="mt-4 text-sm font-semibold text-[#03C75A] hover:underline self-end">
+                    관련 기사 더보기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- 구글 카드 -->
+            <div class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-[#4285F4] mb-4">Google News</h2>
+                <ul class="news-list text-left space-y-3 text-gray-700 dark:text-gray-300 flex-grow">
+                    <li><a href="https://www.baccro.com/news/articleView.html?idxno=57575" target="_blank" class="hover:underline">아쿠아홀딩스, 세계평화UN장학재단 공식 후원사로 선정</a></li>
+                    <li><a href="https://www.hellot.net/news/article.html?no=104019" target="_blank" class="hover:underline">농수산 유통에 ‘미디어 DNA’ 이식…아쿠아홀딩스, 경제 전문지 ‘경제인’ 인수</a></li>
+                    <li><a href="https://www.beyondpost.co.kr/view.php?ud=20250813083536464346a9e4dd7f_30" target="_blank" class="hover:underline">아쿠아홀딩스, 하남 '제일가' 대형마트와 공동운영 계약 체결</a></li>
+                </ul>
+                <a href="https://www.google.com/search?tbm=nws&q=아쿠아홀딩스" target="_blank" class="mt-4 text-sm font-semibold text-[#4285F4] hover:underline self-end">
+                    관련 기사 더보기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- 다음 카드 -->
+            <div class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-[#1E63E8] mb-4">Daum News</h2>
+                <ul class="news-list text-left space-y-3 text-gray-700 dark:text-gray-300 flex-grow">
+                    <li><a href="https://www.globalepic.co.kr/view.php?ud=202508061039426428ac3d53c8ec_29" target="_blank" class="hover:underline">아쿠아홀딩스, 경제전문지 '경제인' 인수로 미디어 커머스 혁신 선언</a></li>
+                    <li><a href="https://www.globalepic.co.kr/view.php?ud=202508060738119543ac3d53c8ec_29" target="_blank" class="hover:underline">아쿠아홀딩스, 34년 전통 양식장과 독점 계약 체결.. 수산물 양식 투자 활성화 기대</a></li>
+                    <li><a href="https://www.baccro.com/news/articleView.html?idxno=57575" target="_blank" class="hover:underline">아쿠아홀딩스, 세계평화UN장학재단 공식 후원사로 선정</a></li>
+                </ul>
+                <a href="https://search.daum.net/search?w=news&q=아쿠아홀딩스" target="_blank" class="mt-4 text-sm font-semibold text-[#1E63E8] hover:underline self-end">
+                    관련 기사 더보기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- 네이트 카드 -->
+            <div class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-[#E61D2B] mb-4">NATE News</h2>
+                <ul class="news-list text-left space-y-3 text-gray-700 dark:text-gray-300 flex-grow">
+                    <li><a href="https://www.issuenbiz.com/news/articleView.html?idxno=65669" target="_blank" class="hover:underline">아쿠아홀딩스, 세계평화UN장학재단 공식 후원사로 선정… 10월 1일 전쟁기념관서 협약</a></li>
+                    <li><a href="https://www.queen.co.kr/news/articleView.html?idxno=440584" target="_blank" class="hover:underline">스마트 양식 기업 아쿠아홀딩스, 3회차 현장 견학 성료...</a></li>
+                    <li><a href="https://www.beyondpost.co.kr/view.php?ud=20250813083536464346a9e4dd7f_30" target="_blank" class="hover:underline">아쿠아홀딩스, 하남 '제일가' 대형마트와 공동운영 계약 체결</a></li>
+                </ul>
+                <a href="https://search.daum.net/nate?w=news&q=아쿠아홀딩스" target="_blank" class="mt-4 text-sm font-semibold text-[#E61D2B] hover:underline self-end">
+                    관련 기사 더보기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- 줌 카드 -->
+            <div class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-[#00A388] mb-4">ZUM News</h2>
+                <ul class="news-list text-left space-y-3 text-gray-700 dark:text-gray-300 flex-grow">
+                     <li><a href="https://www.energy-news.co.kr/news/articleView.html?idxno=216409" target="_blank" class="hover:underline">아쿠아홀딩스, 34년 전통 양식장과 독점 계약 체결..새로운 수익 모델 제시</a></li>
+                     <li><a href="https://www.globalepic.co.kr/view.php?ud=202508061039426428ac3d53c8ec_29" target="_blank" class="hover:underline">아쿠아홀딩스, 경제전문지 '경제인' 인수로 미디어 커머스 혁신 선언</a></li>
+                     <li><a href="https://www.baccro.com/news/articleView.html?idxno=57575" target="_blank" class="hover:underline">아쿠아홀딩스, 세계평화UN장학재단 공식 후원사로 선정</a></li>
+                </ul>
+                <a href="https://search.zum.com/search.zum?method=news&query=아쿠아홀딩스" target="_blank" class="mt-4 text-sm font-semibold text-[#00A388] hover:underline self-end">
+                    관련 기사 더보기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- 아쿠아TV 유튜브 카드 -->
+            <div class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-[#FF0000] mb-4">Aqua TV</h2>
+                <ul class="news-list text-left space-y-3 text-gray-700 dark:text-gray-300 flex-grow">
+                    <li><a href="https://youtu.be/OoyLJduFVyw?si=jBKvPeXN9pk1-zTR" target="_blank" class="hover:underline">아쿠아 전복 프랜차이즈 '복마니' 소개 영상</a></li>
+                    <li><a href="https://youtu.be/Rh0zY9y-OcQ?si=9NKriVvIXPjyLl7e" target="_blank" class="hover:underline">아쿠아홀딩스의 수백억 농수산 인프라 및 투자 제안</a></li>
+                    <li><a href="https://youtu.be/_i81Py_rf88?si=Ja0xDtx03y5Bjo-t" target="_blank" class="hover:underline">아쿠아홀딩스 & 민영 농산물 도매시장</a></li>
+                </ul>
+                <a href="https://www.youtube.com/@%EC%95%84%EC%BF%A0%EC%95%84%ED%99%80%EB%94%A9%EC%8A%A4" target="_blank" class="mt-4 text-sm font-semibold text-[#FF0000] hover:underline self-end">
+                    채널 바로가기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+            
+            <!-- 투자 제안서 카드 -->
+            <a href="https://drive.google.com/drive/folders/1AGz4395n6HC_ghhWOUCUqkKRHIxouyYM?usp=drive_link" target="_blank" class="portal-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-2 h-full">
+                <i class="fas fa-file-powerpoint text-5xl text-purple-500 mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">투자 제안서</h2>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">아쿠아홀딩스의 비전과 가치를 확인하세요.</p>
+            </a>
+
+            <!-- 카카오톡 단톡방 카드 -->
+            <a href="https://open.kakao.com/o/gexkXLGh" target="_blank" class="portal-card bg-yellow-300 rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-2 h-full">
+                <i class="fas fa-comment-dots text-5xl text-gray-800 mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">카카오톡 실시간 소통방</h2>
+                <p class="text-gray-700 text-sm">투자자들과 실시간으로 소통하세요.</p>
+            </a>
+
+        </div>
+
+        <!-- 푸터 -->
+        <footer class="text-center mt-12 md:mt-20">
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                본 페이지는 투자자 정보 제공을 목적으로 제작되었습니다. 각 언론사의 기사에 대한 권리는 해당 언론사에 있습니다.
+            </p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                최신 정보 확인을 위해 각 포털 링크를 클릭하세요.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
 
