@@ -63,14 +63,29 @@
     <body class="bg-gray-900 text-gray-200">
 
         <!-- Header -->
+        <head>
+        <style>
+            .emerald-text { color: #34d399; }
+        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        </head>
         <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
-            <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="container mx-auto px-6 flex justify-between items-center text-white">
                 <a href="#hero" class="text-2xl font-bold emerald-text">아쿠아홀딩스</a>
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="#proof" class="hover:emerald-text transition">투자 실체</a>
                     <a href="#difference" class="hover:emerald-text transition">차별점</a>
                     <a href="#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
                     <a href="#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
+                    <div class="relative group">
+                        <button class="hover:emerald-text transition focus:outline-none">Data room</button>
+                        <div class="absolute hidden group-hover:block bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+                            <a href="https://aquaholding.co.kr/dataroom/newsall" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                            <a href="https://aquaholding.co.kr/dataroom/gallery" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                            <a href="https://aquaholding.co.kr/dataroom/calculator" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+                            <a href="https://aquaholding.co.kr/dataroom/msg-1" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                        </div>
+                    </div>
                     <a href="#faq" class="hover:emerald-text transition">FAQ</a>
                     <a href="#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
                 </nav>
@@ -81,11 +96,71 @@
                 <a href="#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
                 <a href="#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
                 <a href="#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+                <div id="data-room-mobile-toggle" class="relative">
+                    <button class="w-full text-center py-3 hover:bg-gray-700">Data room</button>
+                    <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                        <a href="https://aquaholding.co.kr/dataroom/newsall" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                        <a href="https://aquaholding.co.kr/dataroom/gallery" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                        <a href="https://aquaholding.co.kr/dataroom/calculator" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                        <a href="https://aquaholding.co.kr/dataroom/msg-1" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                    </div>
+                </div>
                 <a href="#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
                 <a href="#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
             </div>
         </header>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
+                const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
 
+                // 모바일 메뉴 토글
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // 모바일 Data room 하위 메뉴 토글
+                dataRoomMobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dataRoomMobileSubmenu.classList.toggle('hidden');
+                });
+
+                // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            });
+        </script> 
+<!----     <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <a href="#hero" class="text-2xl font-bold emerald-text">아쿠아홀딩스</a>
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="#proof" class="hover:emerald-text transition">투자 실체</a>
+                    <a href="#difference" class="hover:emerald-text transition">차별점</a>
+                    <a href="#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
+                    <a href="#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
+                    <a href="#data-room" class="hover:emerald-text transition">Data room</a>
+                    <a href="#faq" class="hover:emerald-text transition">FAQ</a>
+                    <a href="#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+                <a href="#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+                <a href="#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+                <a href="#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+                <a href="#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+                <a href="#data-room" class="block text-center py-3 hover:bg-gray-700">Data room</a>
+                <a href="#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+                <a href="#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+            </div>
+        </header>
+--->
         <main>
             <!-- Section 1: Hero Section -->
             <section id="hero" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
@@ -876,4 +951,3 @@
 
     </body>
 </html>
-
