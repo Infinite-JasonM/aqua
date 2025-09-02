@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="ko" class="scroll-smooth">
     <head>
         <meta charset="UTF-8">
@@ -8,14 +7,14 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://unpkg.com/lucide@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2  .19/dist/tailwind.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
             <style>
                 body {
                     font-family: 'Noto Sans KR', sans-serif;
@@ -59,16 +58,8 @@
                 }
             </style>
     </head>
-
     <body class="bg-gray-900 text-gray-200">
-
         <!-- Header -->
-        <head>
-        <style>
-            .emerald-text { color: #34d399; }
-        </style>
-        <script src="https://cdn.tailwindcss.com"></script>
-        </head>
         <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
             <div class="container mx-auto px-6 flex justify-between items-center text-white">
                 <a href="#hero" class="text-2xl font-bold emerald-text">아쿠아홀딩스</a>
@@ -77,13 +68,13 @@
                     <a href="#difference" class="hover:emerald-text transition">차별점</a>
                     <a href="#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
                     <a href="#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
-                    <div class="relative group">
-                        <button class="hover:emerald-text transition focus:outline-none">Data room</button>
-                        <div class="absolute hidden group-hover:block bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
-                            <a href="https://aquaholding.co.kr/dataroom/newsall" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
-                            <a href="https://aquaholding.co.kr/dataroom/gallery" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
-                            <a href="https://aquaholding.co.kr/dataroom/calculator" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
-                            <a href="https://aquaholding.co.kr/dataroom/msg-1" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                    <div id="pc-data-room-container" class="relative">
+                        <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+	                            <a href="https://aquaholdings.co.kr/dataroom/newsall" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+	                            <a href="https://aquaholdings.co.kr/dataroom/gallery" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+	                            <a href="https://aquaholdings.co.kr/dataroom/calculator" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+	                            <a href="https://aquaholdings.co.kr/dataroom/msg-1" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
                         </div>
                     </div>
                     <a href="#faq" class="hover:emerald-text transition">FAQ</a>
@@ -97,70 +88,23 @@
                 <a href="#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
                 <a href="#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
                 <div id="data-room-mobile-toggle" class="relative">
-                    <button class="w-full text-center py-3 hover:bg-gray-700">Data room</button>
+                    <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                        Data room
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
                     <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
-                        <a href="https://aquaholding.co.kr/dataroom/newsall" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
-                        <a href="https://aquaholding.co.kr/dataroom/gallery" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
-                        <a href="https://aquaholding.co.kr/dataroom/calculator" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
-                        <a href="https://aquaholding.co.kr/dataroom/msg-1" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/newsall" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/gallery" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/calculator" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/msg-1" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
                     </div>
                 </div>
                 <a href="#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
                 <a href="#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
             </div>
         </header>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const mobileMenuButton = document.getElementById('mobile-menu-button');
-                const mobileMenu = document.getElementById('mobile-menu');
-                const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
-                const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
-
-                // 모바일 메뉴 토글
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-
-                // 모바일 Data room 하위 메뉴 토글
-                dataRoomMobileToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    dataRoomMobileSubmenu.classList.toggle('hidden');
-                });
-
-                // 모바일 메뉴 링크 클릭 시 메뉴 닫기
-                const mobileLinks = mobileMenu.querySelectorAll('a');
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
-            });
-        </script> 
-<!----     <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
-            <div class="container mx-auto px-6 flex justify-between items-center">
-                <a href="#hero" class="text-2xl font-bold emerald-text">아쿠아홀딩스</a>
-                <nav class="hidden md:flex space-x-6 items-center">
-                    <a href="#proof" class="hover:emerald-text transition">투자 실체</a>
-                    <a href="#difference" class="hover:emerald-text transition">차별점</a>
-                    <a href="#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
-                    <a href="#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
-                    <a href="#data-room" class="hover:emerald-text transition">Data room</a>
-                    <a href="#faq" class="hover:emerald-text transition">FAQ</a>
-                    <a href="#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
-                <a href="#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
-                <a href="#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
-                <a href="#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
-                <a href="#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
-                <a href="#data-room" class="block text-center py-3 hover:bg-gray-700">Data room</a>
-                <a href="#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
-                <a href="#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
-            </div>
-        </header>
---->
         <main>
             <!-- Section 1: Hero Section -->
             <section id="hero" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
@@ -178,7 +122,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 2: Real-time Investment Status -->
             <section id="status" class="py-20 bg-gray-800">
                 <div class="container mx-auto px-6">
@@ -198,7 +141,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 3: The Proof -->
             <section id="proof" class="py-24">
                 <div class="container mx-auto px-6">
@@ -210,13 +152,7 @@
                                 <br><br><br>
                             </p>
                         </h1>
-                        <!-- 서브 타이틀이나 추가적인 설명이 필요하다면 아래와 같이 추가할 수 있습니다. -->
-                        <!-- <p class="text-xl md:text-2xl mt-4 text-gray-400">여기에 추가적인 설명을 입력하세요.</p> -->
                     </div>
-    <!--
-                    <h2 class="section-title"></h2><h3><b class=""><h1 class="text-4xl md:text-6xl font-black leading-tight mb-4" style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; color: rgb(255, 255, 255); text-align: center;"></h1><h3><b class="" style="width: 229.713px; height: 23.2px;"><h2 class="section-title" style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;"></h2><h3 style="width: 976px; height: 50px;" class=""></h3><h2 class="section-title" style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;">소액 공동투자로 수백억 인프라를 소유한다</h2><div><br></div></b></h3><p></p><p></p></b></h3><p></p><p></p><p></p><p></p>
-                    <p class="section-subtitle"></p><blockquote><p class="" style="width: 976px; height: 24px;"><br></p></blockquote><p></p>
-    -->                
                     <div id="tabs-container" class="max-w-5xl mx-auto">
                         <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
                             <button data-tab="partner1" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white">21세기수산</button>
@@ -224,7 +160,6 @@
                             <button data-tab="partner3" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white">영주 도매시장</button>
                             <button data-tab="partner4" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white">제일가 마트</button>
                         </div>
-
                         <div id="tab-content" class="bg-gray-800 p-6 sm:p-8 rounded-2xl">
                             <!-- Partner 1 Content -->
                             <div id="partner1" class="tab-pane active hidden">
@@ -241,16 +176,16 @@
                                         <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498217528-image-1754498214042-uu9l6shm9@4032x1816.jpg" alt="21세기수산 양식장 전경" class="main-gallery-image rounded-lg w-full h-80 object-cover mb-4" style="object-fit: cover;">
                                         <div class="thumbnail-grid grid grid-cols-4 gap-2">
                                             <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498217090-image-1754498214085-o0180t0kp@4032x1816.jpg" alt="21세기수산 양식장 전경" class="gallery-thumbnail rounded cursor-pointer border-2 emerald-border h-20 w-full object-cover" style="object-fit: cover;">
-                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498217038-image-1754498214114-slkdowqdg@1600x901.jpg" alt="최첨단 온도조절 시스템" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
-                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498216604-image-1754498214138-cq46orrp9@1600x901.jpg" alt="최상급 전복" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
-                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498217018-image-1754498214156-1nxyqpt49@1600x901.jpg" alt="치패 납품" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549031962-image-1754549030806-k6dojk6ll@1600x901.jpg" alt="최첨단 온도조절 시스템" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179977-image-1754549179495-kyjl04oq4@1411x1058.jpg" alt="최상급 전복" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179976-image-1754549179478-7dnjddi9j@1411x1058.jpg" alt="치패 납품" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Partner 2 Content -->
                             <div id="partner2" class="tab-pane">
-                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div class="grid md:grid-cols-2 gap-8 items-center">
                                     <div>
                                         <h3 class="text-2xl font-bold mb-2 emerald-text">3만 6천 평, 365일 멈추지 않는 안면도 최대 규모 양식 단지</h3>
                                         <p class="text-gray-300 mb-6">**대형 노지 저수지 7기와 초대형 실내 수조 3기**를 모두 소유하여, 계절 변화와 관계없이 365일 안정적인 생산이 가능합니다. 조기, 새우부터 참돔, 우럭까지 다양한 최고급 어종을 시장에 공급합니다.</p>
@@ -318,7 +253,6 @@
                     </div>
                 </div>
             </section>
-            
             <!-- Section 4: The Aqua Difference -->
             <section id="difference" class="py-24 bg-gray-900">
                 <div class="container mx-auto px-6">
@@ -360,13 +294,11 @@
                     <p class="text-center text-sm text-gray-500 mt-4">※ 상기 내용은 일반적인 투자 유형의 특징을 비교한 것이며, 개별 상품에 따라 차이가 있을 수 있습니다.</p>
                 </div>
             </section>
-
             <!-- Section 5: How It Works -->
             <section id="how-it-works" class="py-24">
                 <div class="container mx-auto px-6">
                     <h2 class="section-title">투명한 수익 창출 구조</h2>
                     <p class="section-subtitle">복잡한 투자를 쉽고 투명하게 만드는 아쿠아홀딩스의 시스템을 소개해 '나도 쉽게 할 수 있겠다'는 자신감과 '믿을 수 있는 시스템'이라는 신뢰를 동시에 제공합니다.</p>
-                    
                     <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
                         <div class="text-center p-4 flex flex-col items-center">
                             <div class="w-16 h-16 rounded-full emerald-bg flex items-center justify-center text-2xl mb-2">👤</div>
@@ -397,22 +329,18 @@
                             <p class="font-bold">수익 배당</p>
                         </div>
                     </div>
-
                     <div class="max-w-3xl mx-auto mt-16 bg-gray-800 p-8 rounded-2xl text-center">
                         <h3 class="text-2xl font-bold mb-4 emerald-text">아쿠아홀딩스 공동투자의 시너지</h3>
                         <p class="text-lg">아쿠아홀딩스는 단순히 개별 기업에 투자하는 것이 아닙니다. **[생산] → [가공/저장] → [유통]**으로 이어지는 원스톱 밸류체인을 공동 운영합니다. 이를 통해 불필요한 중간 유통 마진을 줄이고, 생산비를 절감하여 **수익성을 높이는 구조**를 만들었습니다. 이것이 바로 연 36%라는 높은 배당률을 '목표'로 할 수 있는 핵심 기반입니다.</p>
                     </div>
                 </div>
             </section>
-
             <!-- Section 6: Trust and Safety Center (NEW) -->
             <section id="trust-safety-center" class="py-24 bg-gray-900">
                 <div class="container mx-auto px-6">
                     <h2 class="section-title">아쿠아홀딩스 신뢰와 안전 센터</h2>
                     <p class="section-subtitle">고객의 자산을 가장 안전하게 보호하고 투명하게 운영합니다.</p>
                     <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
-                        
-                        
                         <!-- Card 1: Investor Protection -->
                         <div class="bg-gray-800 p-8 rounded-lg flex flex-col">
                             <div class="flex items-center mb-4">
@@ -421,24 +349,12 @@
                             </div>
                             <p class="text-gray-300 mb-4">아쿠아 RWA 토큰:<br>아쿠아 RWA 토큰은 실물 자산으로 투자 가치를 지킵니다.</p>
                             <p class="text-gray-400 mb-6">아쿠아홀딩스는 고객님의 자산을 최우선으로 보호하기 위해, 실물 생산량에 기반한 다음과 같은 투명하고 강력한 3중 보호 조치를 마련했습니다.</p>
-                            <ul class="space-y-3 text-gray-400">
-                                <li class="flex items
                             <ul class="mt-auto space-y-3 text-gray-400">
                                 <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>실물 보증:</strong> 최상급 농수산물의 실물 가치에 연동</span></li>
                                 <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>투명한 가격:</strong> 실시간 도매 시장 시세 적용</span></li>
                                 <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>확실한 상환:</strong> 만기 시 현금 또는 실물 선택 보장</span></li>
                             </ul>
-                            <!--
-                            <div>  
-                            <p class="text-gray-300 mb-4" style=""></p><h3 class=""><b>아쿠아 RWA 토큰: 실물 자산으로 지켜드리는 투자 가치</b><div><b><br></b></div><div><h3 class=""><b>실물 자산으로 투자 가치를 지킵니다.</b><div><b><br></b></div></h3><p></p><p>아쿠아 RWA 토큰은 다음 3가지 원칙으로 고객님의 자산을 안전하게 지킵니다.</p><p><br></p><ul><li><p class=""><b>실물 보증:</b> 최상급 농수산물의 실물 가치에 연동</p></li><li><p><br></p></li><li><p><b>투명한 가격:</b> 실시간 도매 시장 시세 적용</p></li><li><p><br></p></li><li><p><b>확실한 상환:</b> 만기 시 현금 또는 실물 선택 보장</p></li></ul></div></h3><p></p><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true">아쿠아는 투자자의 자산을 최우선으로 보호하기 위해, 실물 생산량에 기반한 다음과 같은 투명하고 강력한 3중 보호 조치를 마련했습니다.</p><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><b>1. 실물 기반의 안정성: 눈에 보이는 자산에 투자합니다.</b></p><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true">투자금은 가상의 개념이 아닌, 아쿠아 양식장에서 생산될 **'최상급 수산물의 실물 소유권'**과 직접 연동됩니다. 이는 수백억 원 규모의 생산 인프라와 아쿠아의 건실한 사업 기반이 보증하는 가장 확실하고 안정적인 가치 기반입니다.</p><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><b>2. 투명한 가치 산정: 실시간 시장 가격을 따릅니다.</b></p><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true">투자 자산의 가치를 저희가 임의로 정하지 않습니다. 공신력 있는 기관이 제공하는 **'실시간 수산물 도매시장 시세'**에 100% 연동되어 투명하게 산정됩니다. 투자자는 언제나 공정한 시장 가격을 통해 자신의 자산 가치를 명확하게 확인할 수 있습니다.</p><p><b style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true">3. '가치 실현' 보장 제도: 투자의 끝을 명확하게 보장합니다.</b></p><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true">투자의 가장 중요한 회수 단계를 명확히 보장합니다. 만기 시, 토큰 보유자는 아래 방식 중 가장 유리한 것을 선택하여 <b>투자가치를 100% 실현</b>할 수 있습니다.</p><ul><li><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><b>① 현금 정산:</b> 당시의 시장가로 산정된 현금으로 즉시 교환</p></li><li><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><b>② 실물 인수:</b> 증서에 해당하는 최상급 수산물을 실물로 직접 수령</p></li><li><p style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><b>③ 특별 혜택:</b> 아쿠아 제휴 레스토랑 식사권 등 특별 상품으로 교환</p></li></ul><p></p>
-                            <ul class="mt-auto space-y-3 text-gray-400">
-                                <li class="flex items-start" style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><strong>예치금 분리 보관:</strong> 투자금은 회사 자산과 분리된 신탁계좌에 안전하게 보관됩니다.</span></li>
-                                <li class="flex items-start" style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true"><strong>원리금수취권 증서 발급:</strong> 모든 투자에 대해 법적 효력을 갖는 증서를 발급하여 투자자의 재산권을 보장합니다.</span></li>
-                            </ul>
-                            </div>
-                            -->
                         </div>
-
                         <!-- Card 2: Transparent Process -->
                         <div class="bg-gray-800 p-8 rounded-lg flex flex-col">
                             <div class="flex items-center mb-4">
@@ -458,8 +374,6 @@
                                 <p><strong>5. 사후 관리:</strong> 정기 보고 및 실시간 현황 공유</p>
                             </div>
                         </div>
-
-
                         <!-- Card 3: Security System -->
                         <div class="bg-gray-800 p-8 rounded-lg flex flex-col">
                             <div class="flex items-center mb-4">
@@ -476,7 +390,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 7: Testimonials -->
             <section id="testimonials" class="py-24">
                 <div class="container mx-auto px-6">
@@ -562,7 +475,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 8: Trust System -->
             <section id="trust-system" class="py-24 bg-gray-900">
                 <div class="container mx-auto px-6">
@@ -596,7 +508,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 9: FAQ -->
             <section id="faq" class="py-24">
                 <div class="container mx-auto px-6 max-w-4xl">
@@ -696,7 +607,6 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 10: Media & Trust Center -->
             <section id="media" class="py-24 bg-gray-900">
                 <div class="container mx-auto px-6">
@@ -722,29 +632,16 @@
                     </div>
                 </div>
             </section>
-
             <!-- Section 11: Final CTA -->
             <section id="final-cta" class="py-24 bg-gray-800">
                 <div class="container mx-auto px-6 text-center max-w-3xl">
                     <h2 class="text-3xl md:text-4xl font-black mb-4 text-white">지금, 대한민국 농수산 유통의 미래가<br>당신의 투자를 기다립니다.</h2>
                     <p class="text-lg text-gray-300 mb-8">전문가와 1:1 맞춤 상담을 통해 당신의 포트폴리오를 혁신하세요. 실물 자산 투자의 안정성과 높은 목표 배당률의 기회를 놓치지 마십시오.</p>
-                    <!-- 이 부분의 href 속성을 구글 폼 링크로 변경했습니다. -->
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbb7bYNwQBfuog7ZO6mkmJ4KftN6f2H3qTn6REpDPwy3DEMw/viewform?embedded=true" target="_blank" class="inline-block bg-emerald-600 text-white px-10 py-4 rounded-lg text-xl font-bold hover:bg-emerald-700 transition duration-300">연 36% 목표 배당, 지금 상담 신청하기</a>
                     <p class="text-sm text-gray-500 mt-4">'상담 신청은 투자 결정이 아니며, 어떠한 비용도 발생하지 않습니다.'</p>
                 </div>
             </section>
-            <!--
-            <section id="final-cta" class="py-24 bg-gray-800">
-                <div class="container mx-auto px-6 text-center max-w-3xl">
-                    <h2 class="text-3xl md:text-4xl font-black mb-4">지금, 대한민국 농수산 유통의 미래가<br>당신의 투자를 기다립니다.</h2>
-                    <p class="text-lg text-gray-300 mb-8">전문가와 1:1 맞춤 상담을 통해 당신의 포트폴리오를 혁신하세요. 실물 자산 투자의 안정성과 높은 목표 배당률의 기회를 놓치지 마십시오.</p>
-                    <a href="#final-cta" class="inline-block bg-emerald-600 text-white px-10 py-4 rounded-lg text-xl font-bold hover:bg-emerald-700 transition duration-300">연 36% 목표 배당, 지금 상담 신청하기</a>
-                    <p class="text-sm text-gray-500 mt-4">'상담 신청은 투자 결정이 아니며, 어떠한 비용도 발생하지 않습니다.'</p>
-                </div>
-            </section>
-            -->
         </main>
-
         <footer class="bg-gray-900 py-8">
             <div class="container mx-auto px-6 text-center text-gray-500">
                 <p class="">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
@@ -752,7 +649,6 @@
                 <p class="mt-4 text-sm">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
             </div>
         </footer>
-
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Initialize Lucide Icons
@@ -764,7 +660,17 @@
                 mobileMenuButton.addEventListener('click', () => {
                     mobileMenu.classList.toggle('hidden');
                 });
-
+                const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
+                const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
+                const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
+                
+                // 모바일 Data room 하위 메뉴 토글
+                dataRoomMobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dataRoomMobileSubmenu.classList.toggle('hidden');
+                    dataRoomMobileIcon.classList.toggle('rotate-180');
+                });
+                
                 // Header scroll effect
                 const header = document.getElementById('header');
                 window.addEventListener('scroll', () => {
@@ -776,7 +682,6 @@
                         header.classList.add('py-4');
                     }
                 });
-
                 // Status Counter Animation
                 const animateValue = (obj, start, end, duration) => {
                     let startTimestamp = null;
@@ -790,7 +695,6 @@
                     };
                     window.requestAnimationFrame(step);
                 };
-
                 const observeCounter = (elementId) => {
                     const target = document.getElementById(elementId);
                     if(!target) return;
@@ -805,34 +709,28 @@
                     }, { threshold: 0.5 });
                     observer.observe(target);
                 };
-
                 observeCounter('total-investment');
                 observeCounter('total-dividend');
-
                 // Tabs for "The Proof" section
                 const tabsContainer = document.getElementById('tabs-container');
                 if(tabsContainer){
                     const tabButtons = tabsContainer.querySelectorAll('.tab-button');
                     const tabPanes = tabsContainer.querySelectorAll('.tab-pane');
-
                     tabButtons.forEach(button => {
                         button.addEventListener('click', () => {
                             tabButtons.forEach(btn => btn.classList.remove('active'));
                             tabPanes.forEach(pane => pane.classList.add('hidden'));
-
                             button.classList.add('active');
                             const tabId = button.dataset.tab;
                             document.getElementById(tabId).classList.remove('hidden');
                         });
                     });
                 }
-
                 // Gallery functionality within tabs
                 const galleryContainers = document.querySelectorAll('.gallery-container');
                 galleryContainers.forEach(container => {
                     const mainImage = container.querySelector('.main-gallery-image');
                     const thumbnails = container.querySelectorAll('.gallery-thumbnail');
-
                     thumbnails.forEach(thumb => {
                         thumb.addEventListener('click', () => {
                             mainImage.src = thumb.src;
@@ -845,7 +743,6 @@
                         });
                     });
                 });
-
                 // Testimonial Slider
                 const slider = document.getElementById('testimonial-slider');
                 if(slider){
@@ -854,19 +751,16 @@
                     const nextButton = document.getElementById('next-testimonial');
                     const prevButton = document.getElementById('prev-testimonial');
                     let currentIndex = 0;
-                    
                     const updateSlidePosition = () => {
                         if (slides.length === 0) return;
                         const slideWidth = slides[0].getBoundingClientRect().width;
                         track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
                     }
-
                     const moveToSlide = (index) => {
                         if (slides.length === 0) return;
                         currentIndex = index;
                         updateSlidePosition();
                     };
-
                     nextButton.addEventListener('click', () => {
                         let nextIndex = currentIndex + 1;
                         if (nextIndex >= slides.length) {
@@ -874,7 +768,6 @@
                         }
                         moveToSlide(nextIndex);
                     });
-
                     prevButton.addEventListener('click', () => {
                         let prevIndex = currentIndex - 1;
                         if (prevIndex < 0) {
@@ -882,7 +775,6 @@
                         }
                         moveToSlide(prevIndex);
                     });
-                    
                     setInterval(() => {
                         let nextIndex = currentIndex + 1;
                         if (nextIndex >= slides.length) {
@@ -890,11 +782,8 @@
                         }
                         moveToSlide(nextIndex);
                     }, 5000); 
-                    
                     window.addEventListener('resize', updateSlidePosition);
                 }
-
-
                 // FAQ Accordion
                 const accordionContainer = document.getElementById('accordion-container');
                 if(accordionContainer){
@@ -904,7 +793,6 @@
                             const content = button.nextElementSibling;
                             const icon = button.querySelector('.accordion-icon');
                             const isOpening = !content.style.maxHeight;
-
                             accordionButtons.forEach(otherButton => {
                                 if(otherButton !== button && otherButton.nextElementSibling.style.maxHeight) {
                                     otherButton.nextElementSibling.style.maxHeight = null;
@@ -912,7 +800,6 @@
                                     otherButton.querySelector('.accordion-icon').textContent = '+';
                                 }
                             });
-
                             if (isOpening) {
                                 content.style.maxHeight = content.scrollHeight + 'px';
                                 icon.classList.add('rotate-45');
@@ -925,29 +812,39 @@
                         });
                     });
                 }
-
                 // Smooth scroll for nav links
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         e.preventDefault();
-                        
                         const targetId = this.getAttribute('href');
                         const targetElement = document.querySelector(targetId);
-
                         if(targetElement) {
                             targetElement.scrollIntoView({
                                 behavior: 'smooth'
                             });
                         }
-                        
                         if (!mobileMenu.classList.contains('hidden')) {
                             mobileMenu.classList.add('hidden');
                         }
                     });
                 });
-
+                
+                // PC Data room menu click toggle
+                const pcDataRoomButton = document.querySelector('#pc-data-room-button');
+                const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
+                
+                pcDataRoomButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    pcDataRoomSubmenu.classList.toggle('hidden');
+                });
+                
+                // Hide PC submenu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
+                        pcDataRoomSubmenu.classList.add('hidden');
+                    }
+                });
             });
         </script>
-
     </body>
 </html>
