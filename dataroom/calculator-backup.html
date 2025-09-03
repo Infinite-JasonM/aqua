@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아쿠아 배당 수익 시뮬레이션 / FAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #050a19;
+            color: #e0e0e0;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #0d1a3a 0%, #050a19 50%, #1a0a30 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        .gradient-text-vibrant {
+            background: linear-gradient(90deg, #00A9E0, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px);
+        }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary .arrow-down { transform: rotate(180deg); }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: -32px;
+            width: 2px;
+            background-image: linear-gradient(to bottom, #3b82f6, #9333ea);
+            opacity: 0.3;
+        }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 32px;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            background-color: #050a19;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(147, 51, 234, 0.7);
+            border-color: #9333ea;
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #00A9E0;
+            cursor: pointer;
+            margin-top: -9px;
+            box-shadow: 0 0 10px rgba(0, 169, 224, 0.8);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #00A9E0, #9f7aea);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="hero-bg text-white">
+        <div class="container mx-auto px-6 py-24 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-4">AQUA HOLDINGS</h1>
+            <p class="text-xl md:text-2xl font-light text-gray-300 max-w-3xl mx-auto">실물 자산의 가치를 극대화하는 투자, 기술과 데이터로 미래를 엽니다.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8 -mt-12 relative z-10">
+        <section id="opportunity" class="text-center mb-24 fade-in-section">
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">36% 목표 수익률, 두 개의 혁신 엔진</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-10">안정적 자산에 기술적 혁신을 더해, 누구도 상상하지 못한 수익 모델을 구축했습니다.</p>
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2 bg-gray-900/30 rounded-lg p-8 text-center">
+                        <p class="text-2xl font-bold text-gray-300 mb-2">목표 배당률 (연)</p>
+                        <p class="text-8xl lg:text-9xl font-black gradient-text-vibrant">36%</p>
+                        <p class="text-lg font-medium text-gray-400 mt-2">검증된 실물 자산 기반</p>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="glass-card p-6 rounded-lg border-l-4 border-cyan-400">
+                            <h3 class="text-xl font-bold text-white mb-2">유통구조 혁신</h3>
+                            <p class="text-gray-400">수직 계열화로 불필요한 비용을 제거하고 수익으로 전환합니다.</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-lg border-l-4 border-purple-500">
+                            <h3 class="text-xl font-bold text-white mb-2">시세 차익 모델</h3>
+                            <p class="text-gray-400">데이터 기반 예측으로 가격 변동성을 추가 수익으로 창출합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="mb-24 fade-in-section">
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-10">투자 수익률 계산기</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-8">
+                        <label for="investmentAmount" class="block text-xl font-bold text-center text-white mb-4">투자금액: <span id="investmentAmountValue" class="gradient-text-vibrant">130,000,000</span> 원</label>
+                        <input type="range" id="investmentAmount" min="10000000" max="500000000" step="10000000" value="130000000" class="w-full">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                        <div class="bg-gray-900/30 rounded-lg p-6">
+                            <p class="text-lg text-gray-400 mb-1">월 예상 배당금</p>
+                            <p class="text-sm text-cyan-400 mb-2 font-bold">(목표 3%)</p>
+                            <p id="monthlyDividend" class="text-4xl font-bold text-white">3,900,000 원</p>
+                        </div>
+                        <div class="bg-gray-900/30 rounded-lg p-6">
+                            <p class="text-lg text-gray-400 mb-1">연 예상 배당금</p>
+                            <p class="text-sm text-cyan-400 mb-2 font-bold">(목표 36%)</p>
+                            <p id="annualDividend" class="text-4xl font-bold text-white">46,800,000 원</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-8">* 본 계산 결과는 연 36% 목표수익률을 기준으로 한 예상치이며, 보장된 수익이 아닙니다.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="incentive" class="mb-24 fade-in-section">
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-4">추가 수익 기회: 직급수당 프로그램</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto text-center mb-10">회사의 성장에 기여하고, 배당 수익을 뛰어넘는 추가 수익을 창출하십시오.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto mb-12">
+                    <div class="bg-gray-900/30 rounded-lg p-6">
+                        <p class="text-5xl mb-4">🏆</p>
+                        <h3 class="text-xl font-bold text-white mb-2">자격 조건</h3>
+                        <p class="text-gray-400">본인 계정 투자금액 3,000만원 달성 시 직급 부여</p>
+                    </div>
+                    <div class="bg-gray-900/30 rounded-lg p-6 border-2 border-cyan-400 shadow-lg shadow-cyan-500/20">
+                        <p class="text-5xl mb-4">💰</p>
+                        <h3 class="text-xl font-bold text-white mb-2">핵심 혜택</h3>
+                        <p class="text-gray-300"><strong class="gradient-text-vibrant text-2xl">회사 전체 매출의 3%</strong>를 모든 직급자에게 매일 공유</p>
+                    </div>
+                    <div class="bg-gray-900/30 rounded-lg p-6">
+                        <p class="text-5xl mb-4">📅</p>
+                        <h3 class="text-xl font-bold text-white mb-2">지급 방식</h3>
+                        <p class="text-gray-400">365일 연중무휴, 매일 안정적으로 지급</p>
+                    </div>
+                </div>
+                <div class="max-w-4xl mx-auto border-t border-gray-700 pt-10">
+                     <h3 class="text-2xl font-bold text-center text-white mb-8">일일 직급수당 예상 계산기</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                         <div>
+                            <label for="dailyRevenue" class="block text-lg font-bold text-center text-white mb-3">일일 회사 매출: <span id="dailyRevenueValue" class="gradient-text-vibrant">100,000,000</span> 원</label>
+                            <input type="range" id="dailyRevenue" min="10000000" max="1000000000" step="10000000" value="100000000" class="w-full">
+                         </div>
+                         <div>
+                            <label for="qualifiedMembers" class="block text-lg font-bold text-center text-white mb-3">총 직급자 수: <span id="qualifiedMembersValue" class="gradient-text-vibrant">5</span> 명</label>
+                            <input type="range" id="qualifiedMembers" min="1" max="100" step="1" value="5" class="w-full">
+                         </div>
+                     </div>
+                     <div class="bg-gray-900/30 rounded-lg p-6 text-center">
+                        <p class="text-lg text-gray-400 mb-2">1인당 일일 예상 수당</p>
+                        <p id="dailyAllowance" class="text-4xl font-bold text-white">600,000 원</p>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stability" class="mb-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">철저한 리스크 관리: 투자의 절대 안정성</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-card rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-white">다각화된 사업 포트폴리오</h3>
+                    <p class="mb-6 text-gray-400">단일 품목의 리스크를 상쇄하는 안정적인 포트폴리오로 시장 변동에 완벽히 대응합니다.</p>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-white">실물 자산 기반 투자</h3>
+                    <p class="mb-6 text-gray-400">투자금은 가치를 담보하는 실물 자산에 직접 투입되어 원금 손실 리스크를 최소화합니다.</p>
+                    <div class="space-y-5">
+                        <div class="flex items-center p-4 bg-gray-900/30 rounded-lg">
+                            <div class="text-3xl mr-4">🐟</div>
+                            <div>
+                                <p class="font-bold text-white">양식장 & 농지</p>
+                                <p class="text-sm text-gray-400">전복, 새우 등 고부가가치 품목</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gray-900/30 rounded-lg">
+                            <div class="text-3xl mr-4">🏢</div>
+                            <div>
+                                <p class="font-bold text-white">저온/냉동 창고 (400평)</p>
+                                <p class="text-sm text-gray-400">시세 차익 모델의 핵심 인프라</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gray-900/30 rounded-lg">
+                            <div class="text-3xl mr-4">🏪</div>
+                            <div>
+                                <p class="font-bold text-white">도매 시장 및 유통망</p>
+                                <p class="text-sm text-gray-400">안정적인 판매 채널 확보</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="growth" class="mb-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">미래 성장 전략: IPO를 향한 로드맵</h2>
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative pl-12">
+                        <h3 class="text-2xl font-bold mb-8 text-white">5년 내 코스닥 상장(IPO) 목표</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-lg text-white mb-1">현재: 기반 구축</h4>
+                            <p class="text-gray-400">핵심 파트너십 및 인프라 확보</p>
+                        </div>
+                        <div class="timeline-item mt-16">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-lg text-white mb-1">2-3년차: 사업 확장</h4>
+                            <p class="text-gray-400">'복마니' 프랜차이즈 전국 확대</p>
+                        </div>
+                        <div class="timeline-item mt-16">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-lg text-white mb-1">4년차: 실적 극대화</h4>
+                            <p class="text-gray-400">상장 요건 충족 및 재무구조 개선</p>
+                        </div>
+                        <div class="timeline-item mt-16">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-lg text-white mb-1">5년차: IPO 달성</h4>
+                            <p class="text-gray-400">투자금 회수 및 시세 차익 실현</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-white text-center">'복마니'의 압도적 경쟁력</h3>
+                        <p class="text-center mb-6 text-gray-400">수직 계열화로 확보한 원가 경쟁력으로 시장을 선도합니다.</p>
+                        <div class="chart-container">
+                            <canvas id="bokmaniChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="qa" class="mb-16 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">상세 질의응답 (FAQ)</h2>
+            <div class="space-y-6 max-w-5xl mx-auto">
+                <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: 연 36% 목표 배당률의 구체적인 근거는 무엇입니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                            <p><strong class="text-white">A:</strong> 두 가지 핵심 전략을 통해 산출됩니다. 첫째, **[생산 → 가공 → 유통] 전 과정을 수직 계열화**하여 중간 마진을 제거했습니다. 둘째, 400평 규모 저온창고를 활용한 **'시세 차익 모델'**을 운영합니다. 이 두 검증된 방식의 수익을 투자자에게 배당합니다.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: 배당 지급 리스크와 원금 보호 방안은 무엇입니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> **다양한 품목 포트폴리오**로 리스크를 분산했으며, 투자금은 **이미 가동 중인 실물 자산**에 직접 투입되어 안정성이 높습니다. 원금은 청산 가치를 가지는 실물 자산이 담보하며, **5년 내 코스닥 상장(IPO)**을 최우선 Exit 전략으로 삼고 있습니다.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: 파트너사와의 '공동 운영' 계약 형태는 어떻게 됩니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> 단순 협력이 아닌 **10년 단위의 강력한 독점 계약**입니다. 아쿠아홀딩스가 생산원가를 전액 지원하여 파트너사의 리스크를 없애고, 수익 발생 시 원가를 최우선 회수한 뒤 약정된 비율로 분배하는 **상생 모델**입니다.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                           Q: CJ와 같은 대기업과 경쟁이 가능합니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> 저희는 대기업과 직접 경쟁하는 것이 아니라, **우리의 규모에 최적화된 '미니멀화' 전략**으로 더 높은 효율성을 추구합니다. 핵심 인프라와 전문가 네트워크를 통해 **가장 효율적인 품목과 시기를 선택하여 집중**하는 방식입니다.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: 투자금 사용 내역을 투명하게 확인할 수 있습니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> 물론입니다. 정기적인 **'현장 실사 및 견학 프로그램'**, **정기 운용 보고서**, 그리고 **CEO 라이브 간담회** 등을 통해 투자금 운용 현황을 투명하게 공개하고 소통할 것입니다.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: '복마니' 프랜차이즈의 성공 전략은 무엇입니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> **강력한 프랜차이즈 전문가 네트워크**와 수직 계열화를 통한 **'독보적인 가성비'**가 핵심입니다. 이미 성공한 프랜차이즈 전문가와 구체적인 협력을 진행 중이며, 경쟁사와 차별화된 가격 경쟁력을 갖춥니다.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: 환경 변화 리스크에 대한 대비책이 있습니까?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> **다품종 포트폴리오**, 데이터 기반의 **스마트 양식 기술**, 그리고 독자적인 **'친환경 미생물 용법'** 기술을 통해 환경 리스크에 종합적으로 대응하고 지속 가능한 생산을 실현합니다.</p>
+                        </div>
+                    </details>
+                </div>
+                 <div class="glass-card rounded-lg">
+                    <details class="p-8">
+                        <summary class="flex justify-between items-center font-bold text-xl text-white">
+                            Q: 회사의 재무 건전성은 어떤 수준인가요?
+                            <span class="arrow-down transition-transform duration-300 text-cyan-400 text-2xl">▼</span>
+                        </summary>
+                        <div class="mt-6 pt-6 border-t border-gray-700 text-gray-300 leading-relaxed text-lg">
+                           <p><strong class="text-white">A:</strong> 저희는 투자금으로 자산을 매입하는 것이 아니라, 파트너사의 **기존 인프라를 '생산원가'만으로 활용**하는 독점 권한을 확보했습니다. 따라서 초기 투자 부담이 큰 일반 스타트업과 달리 **매우 안정적인 재무 구조**를 가지고 있습니다.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900/50 text-white mt-16">
+        <div class="container mx-auto px-6 py-10 text-center">
+            <p class="text-2xl font-bold mb-2">Aqua Holdings</p>
+            <p class="text-gray-400">본 자료는 투자자의 이해를 돕기 위해 제작되었으며, 투자 결정에 따른 최종 책임은 투자자 본인에게 있습니다.</p>
+            <p class="mt-4 text-sm text-gray-500">&copy; 2025 Aqua Holdings. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const futuristicPalette = {
+            cyan: '#00A9E0',
+            purple: '#9f7aea',
+            magenta: '#d53f8c',
+            lightBlue: '#63b3ed',
+            teal: '#319795',
+            darkGrey: '#e2e8f0'
+        };
+
+        const sharedChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: futuristicPalette.darkGrey,
+                        padding: 20,
+                        font: { size: 14, family: "'Noto Sans KR', sans-serif", weight: 500 }
+                    }
+                },
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    backgroundColor: 'rgba(5, 10, 25, 0.8)',
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    borderWidth: 1,
+                    titleColor: futuristicPalette.cyan,
+                    bodyColor: '#FFFFFF',
+                    padding: 12,
+                    cornerRadius: 8,
+                    bodyFont: { family: "'Noto Sans KR', sans-serif" },
+                    titleFont: { family: "'Noto Sans KR', sans-serif", weight: 'bold', size: 16 }
+                }
+            }
+        };
+
+        const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
+        new Chart(portfolioCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['전복', '새우', '조기', '기타 수산물', '농산물'],
+                datasets: [{
+                    label: '사업 포트폴리오',
+                    data: [30, 25, 15, 10, 20],
+                    backgroundColor: [
+                        futuristicPalette.cyan,
+                        futuristicPalette.purple,
+                        futuristicPalette.magenta,
+                        futuristicPalette.lightBlue,
+                        futuristicPalette.teal,
+                    ],
+                    borderColor: '#050a19',
+                    borderWidth: 5,
+                    hoverOffset: 10
+                }]
+            },
+            options: sharedChartOptions
+        });
+
+        const bokmaniCtx = document.getElementById('bokmaniChart').getContext('2d');
+        new Chart(bokmaniCtx, {
+            type: 'bar',
+            data: {
+                labels: ['타사 평균 원가', wrapLabel('복마니 예상 원가 (15~20% 절감)', 16)],
+                datasets: [{
+                    label: '메뉴당 평균 원가 지수',
+                    data: [100, 82.5],
+                    backgroundColor: [
+                        'rgba(255, 255, 255, 0.1)',
+                        futuristicPalette.cyan
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.2)',
+                        futuristicPalette.cyan
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: futuristicPalette.darkGrey, callback: (v) => v + '%' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: futuristicPalette.darkGrey, font: { weight: 'bold', size: 14 } }
+                    }
+                },
+                plugins: { ...sharedChartOptions.plugins, legend: { display: false } }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Dividend Calculator
+            const investmentSlider = document.getElementById('investmentAmount');
+            const amountValue = document.getElementById('investmentAmountValue');
+            const monthlyDividend = document.getElementById('monthlyDividend');
+            const annualDividend = document.getElementById('annualDividend');
+
+            const calculateDividends = () => {
+                const amount = parseInt(investmentSlider.value);
+                const annual = amount * 0.36;
+                const monthly = annual / 12;
+
+                amountValue.textContent = amount.toLocaleString('ko-KR');
+                monthlyDividend.textContent = Math.floor(monthly).toLocaleString('ko-KR') + ' 원';
+                annualDividend.textContent = Math.floor(annual).toLocaleString('ko-KR') + ' 원';
+            };
+
+            investmentSlider.addEventListener('input', calculateDividends);
+            calculateDividends();
+
+            // Allowance Calculator
+            const revenueSlider = document.getElementById('dailyRevenue');
+            const revenueValue = document.getElementById('dailyRevenueValue');
+            const membersSlider = document.getElementById('qualifiedMembers');
+            const membersValue = document.getElementById('qualifiedMembersValue');
+            const dailyAllowance = document.getElementById('dailyAllowance');
+
+            const calculateAllowance = () => {
+                const revenue = parseInt(revenueSlider.value);
+                const members = parseInt(membersSlider.value);
+                const allowancePool = revenue * 0.03;
+                const allowancePerMember = members > 0 ? allowancePool / members : 0;
+
+                revenueValue.textContent = revenue.toLocaleString('ko-KR');
+                membersValue.textContent = members.toLocaleString('ko-KR');
+                dailyAllowance.textContent = Math.floor(allowancePerMember).toLocaleString('ko-KR') + ' 원';
+            };
+
+            revenueSlider.addEventListener('input', calculateAllowance);
+            membersSlider.addEventListener('input', calculateAllowance);
+            calculateAllowance();
+        });
+    </script>
+</body>
+</html>
