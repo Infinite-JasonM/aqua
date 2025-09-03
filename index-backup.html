@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="ko" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>아쿠아홀딩스 - 실물 자산 공동투자 플랫폼</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+            <style>
+                body {
+                    font-family: 'Noto Sans KR', sans-serif;
+                    background-color: #111827;
+                    color: #E5E7EB;
+                }
+                .emerald-text { color: #10B981; }
+                .emerald-bg { background-color: #10B981; }
+                .emerald-border { border-color: #10B981; }
+                .section-title {
+                    font-size: 2.25rem;
+                    font-weight: 900;
+                    line-height: 1.2;
+                    text-align: center;
+                    margin-bottom: 1rem;
+                }
+                .section-subtitle {
+                    font-size: 1.125rem;
+                    color: #9CA3AF;
+                    text-align: center;
+                    max-width: 800px;
+                    margin: 0 auto 4rem auto;
+                }
+                .tab-button.active {
+                    background-color: #10B981;
+                    color: #FFFFFF;
+                }
+                .tab-button {
+                    transition: all 0.3s ease;
+                }
+                .accordion-content {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.5s ease-in-out;
+                }
+                .testimonial-slide {
+                    transition: transform 0.5s ease-in-out;
+                }
+                .gallery-thumbnail {
+                    transition: border-color 0.2s ease-in-out;
+                }
+            </style>
+    </head>
+    <body class="bg-gray-900 text-gray-200">
+        <!-- Header -->
+        <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
+            <div class="container mx-auto px-6 flex justify-between items-center text-white">
+                <a href="#hero" class="text-2xl font-bold emerald-text">아쿠아홀딩스</a>
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="#proof" class="hover:emerald-text transition">투자 실체</a>
+                    <a href="#difference" class="hover:emerald-text transition">차별점</a>
+                    <a href="#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
+                    <a href="#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
+                    <div id="pc-data-room-container" class="relative">
+                        <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+	                            <a href="https://aquaholdings.co.kr/dataroom/newsall" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+	                            <a href="https://aquaholdings.co.kr/dataroom/gallery" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+	                            <a href="https://aquaholdings.co.kr/dataroom/calculator" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+	                            <a href="https://aquaholdings.co.kr/dataroom/msg-1" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                        </div>
+                    </div>
+                    <a href="#faq" class="hover:emerald-text transition">FAQ</a>
+                    <a href="#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+                <a href="#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+                <a href="#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+                <a href="#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+                <a href="#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+                <div id="data-room-mobile-toggle" class="relative">
+                    <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                        Data room
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                        <a href="https://aquaholdings.co.kr/dataroom/newsall" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/gallery" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/calculator" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                        <a href="https://aquaholdings.co.kr/dataroom/msg-1" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                    </div>
+                </div>
+                <a href="#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+                <a href="#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+            </div>
+        </header>
+        <main>
+            <!-- Section 1: Hero Section -->
+            <section id="hero" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+                <img src="https://r2.flowith.net/files/o/1754497556038-korean_fishing_trawler_sunrise_cinematic_realism_index_0@1024x1024.png" alt="Fishing trawler at sunrise, representing real asset investment" class="absolute z-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60 z-10"></div>
+                <div class="relative z-20 px-4">
+                    <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4">
+                        <span class="emerald-text">연 36% 배당</span>을 목표로<br>실물 공동투자의 새로운 기준</h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300">
+                        보이지 않는 아이디어가 아닌, 지금 이 순간에도 수익을 내는 거대 인프라에 직접 투자하세요. 더욱 안정적인 공동투자의 새로운 기준을 제시합니다.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#proof" class="bg-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-emerald-700 transition duration-300">투자 포트폴리오 보기</a>
+                        <a href="#final-cta" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-white hover:text-gray-900 transition duration-300">전문가 상담 신청</a>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 2: Real-time Investment Status -->
+            <section id="status" class="py-20 bg-gray-800">
+                <div class="container mx-auto px-6">
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-16 text-center">
+                        <div>
+                            <p class="text-lg text-gray-400 mb-2">누적 공동투자액</p>
+                            <p class="text-4xl md:text-5xl font-bold emerald-text">
+                                <span class="font-sans">₩ </span><span id="total-investment" data-value="241150000">241,150,000</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-lg text-gray-400 mb-2">총 지급된 배당금</p>
+                            <p class="text-4xl md:text-5xl font-bold emerald-text">
+                                <span class="font-sans">₩ </span><span id="total-dividend" data-value="4230000">4,230,000</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 3: The Proof -->
+            <section id="proof" class="py-24">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-4xl mx-auto text-center px-4 md:px-0">
+                        <h1 class="text-4xl md:text-4xl font-black leading-tight text-white height: 24px mb-8">
+                            <p>
+                                <br>
+                                소액 공동투자로 수백억 인프라를 소유한다
+                                <br><br><br>
+                            </p>
+                        </h1>
+                    </div>
+                    <div id="tabs-container" class="max-w-5xl mx-auto">
+                        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                            <button data-tab="partner1" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white">21세기수산</button>
+                            <button data-tab="partner2" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white active">신성영어조합</button>
+                            <button data-tab="partner3" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white">영주 도매시장</button>
+                            <button data-tab="partner4" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-full bg-gray-700 hover:bg-emerald-600 hover:text-white">제일가 마트</button>
+                        </div>
+                        <div id="tab-content" class="bg-gray-800 p-6 sm:p-8 rounded-2xl">
+                            <!-- Partner 1 Content -->
+                            <div id="partner1" class="tab-pane active hidden">
+                                <div class="grid md:grid-cols-2 gap-8 items-center">
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 emerald-text">완도 1위, 25년 전통의 대한민국 최대 전복 축양장</h3>
+                                        <p class="text-gray-300 mb-6">25년의 노하우와 최첨단 온도조절 시스템으로 **연간 2,500만 마리**의 최상급 전복을 생산합니다. 완도 지역 치패(새끼 전복) 납품 1위 기업으로서, 대한민국 전복 시장의 기준을 만듭니다.</p>
+                                        <div class="bg-gray-700 p-6 rounded-lg italic">
+                                            <p class="mb-4">"바다는 거짓말을 안 합니다. 딱 내가 땀 흘린 만큼만 돌려주죠. 25년간 매일 새벽 바다에 나가면서 배운 단 하나의 진리입니다. 내 자식에게 먹이지 못할 전복은 절대 출하하지 않습니다. 그게 저의 자부심이고, 투자자들과의 약속입니다."</p>
+                                            <p class="font-bold text-right">- 21세기수산 대표&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-container">
+                                        <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498217528-image-1754498214042-uu9l6shm9@4032x1816.jpg" alt="21세기수산 양식장 전경" class="main-gallery-image rounded-lg w-full h-80 object-cover mb-4" style="object-fit: cover;">
+                                        <div class="thumbnail-grid grid grid-cols-4 gap-2">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754498217090-image-1754498214085-o0180t0kp@4032x1816.jpg" alt="21세기수산 양식장 전경" class="gallery-thumbnail rounded cursor-pointer border-2 emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549031962-image-1754549030806-k6dojk6ll@1600x901.jpg" alt="최첨단 온도조절 시스템" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179977-image-1754549179495-kyjl04oq4@1411x1058.jpg" alt="최상급 전복" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179976-image-1754549179478-7dnjddi9j@1411x1058.jpg" alt="치패 납품" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Partner 2 Content -->
+                            <div id="partner2" class="tab-pane">
+                                <div class="grid md:grid-cols-2 gap-8 items-center">
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 emerald-text">3만 6천 평, 365일 멈추지 않는 안면도 최대 규모 양식 단지</h3>
+                                        <p class="text-gray-300 mb-6">**대형 노지 저수지 7기와 초대형 실내 수조 3기**를 모두 소유하여, 계절 변화와 관계없이 365일 안정적인 생산이 가능합니다. 조기, 새우부터 참돔, 우럭까지 다양한 최고급 어종을 시장에 공급합니다.</p>
+                                        <div class="bg-gray-700 p-6 rounded-lg italic">
+                                            <p class="mb-4">"사람들은 365일 다른 생선을 찾는데, 양식은 왜 한 가지만 고집해야 합니까? 계절의 흐름을 읽고, 땅의 힘을 믿고, 다양한 품종을 키워내는 것이 진짜 기술입니다. 저희 양식장이 1년 내내 펄떡이는 이유입니다."</p>
+                                            <p class="font-bold text-right">- 신성영어조합&nbsp; 회장</p>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-container">
+                                        <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549003343-image-1754549001990-qqyitaffp@1152x1536.jpg" alt="신성영어조합 양식장 전경" class="main-gallery-image rounded-lg w-full h-80 object-cover mb-4" style="object-fit: cover;">
+                                        <div class="thumbnail-grid grid grid-cols-4 gap-2">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549031962-image-1754549030806-k6dojk6ll@1600x901.jpg" alt="신성영어조합 양식장 전경" class="gallery-thumbnail rounded cursor-pointer border-2 h-20 w-full object-cover border-transparent" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549003319-image-1754549001913-ryqn0jbxy@1600x901.jpg" alt="대형 노지 저수지" class="gallery-thumbnail rounded cursor-pointer border-2 hover:emerald-border h-20 w-full object-cover border-transparent" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549003384-image-1754549001956-2twstgq91@1152x1536.jpg" alt="초대형 실내 수조" class="gallery-thumbnail rounded cursor-pointer border-2 hover:emerald-border h-20 w-full object-cover border-transparent" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549003343-image-1754549001990-qqyitaffp@1152x1536.jpg" alt="다품종 양식" class="gallery-thumbnail rounded cursor-pointer border-2 hover:emerald-border h-20 w-full object-cover emerald-border" style="object-fit: cover;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Partner 3 Content -->
+                            <div id="partner3" class="tab-pane hidden">
+                                <div class="grid md:grid-cols-2 gap-8 items-center">
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 emerald-text">CJ의 수익모델을 공유하는 국내 5대 민영 경매장</h3>
+                                        <p class="text-gray-300 mb-6">**1만 5천 평** 대규모 시설과 **사과 40만 짝을 보관하는 400평 규모의 저온 창고**를 보유했습니다. 현지 농가와 계약재배를 통해 농산물을 저가에 매입, 최적의 시기에 최고가로 매도하여 수익을 극대화합니다. 이는 **대기업 CJ의 수익 창출 방식과 동일한 모델**입니다.</p>
+                                        <div class="bg-gray-700 p-6 rounded-lg italic">
+                                            <p class="mb-4">"농부가 제값 받고, 소비자가 좋은 값에 사는 것. 그 중간을 잇는 게 제 일입니다. 저희 저온창고에 쌓이는 건 사과가 아니라, 농부들의 1년 땀입니다. 그 가치를 최고로 만들어 돌려드리는 것, 그게 제 원칙입니다."</p>
+                                            <p class="font-bold text-right">- 영주 민영 농산물 도매시장 회장</p>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-container">
+                                        <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549180016-image-1754549179448-y600a1sdn@1411x1058.jpg" alt="영주 도매시장 전경" class="main-gallery-image rounded-lg w-full h-80 object-cover mb-4" style="object-fit: cover;">
+                                        <div class="thumbnail-grid grid grid-cols-4 gap-2">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179976-image-1754549179478-7dnjddi9j@1411x1058.jpg" alt="영주 도매시장 전경" class="gallery-thumbnail rounded cursor-pointer border-2 emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179977-image-1754549179495-kyjl04oq4@1411x1058.jpg" alt="대규모 저온 창고" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549179993-image-1754549179510-zb4uivfj1@1411x1058.jpg" alt="활발한 경매 현장" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549180163-image-1754549179524-7simid2q4@1400x1050.jpg" alt="계약재배 농산물" class="gallery-thumbnail rounded cursor-pointer border-2 border-transparent hover:emerald-border h-20 w-full object-cover" style="object-fit: cover;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Partner 4 Content -->
+                            <div id="partner4" class="tab-pane hidden">
+                                <div class="grid md:grid-cols-2 gap-8 items-center">
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 emerald-text">생산지에서 식탁까지, 원스톱 유통의 최종 허브</h3>
+                                        <p class="text-gray-300 mb-6">미사 신도시에 위치한 대형 식자재 마트로서, 21세기수산의 전복, 신성영어조합의 활어, 영주 도매시장의 농산물을 소비자에게 직접 판매합니다. 생산-가공-유통으로 이어지는 **아쿠아홀딩스 공동투자의 수익 실현을 최종 완성**하는 곳입니다.</p>
+                                        <div class="bg-gray-700 p-6 rounded-lg italic">
+                                            <p class="mb-4">"유통의 마지막은 소비자의 장바구니입니다. '오늘 새벽 완도에서 올라온 겁니다'라는 말이 가장 큰 자랑이죠. 산지의 신선함을 그대로 전하는 것. 그 당연한 일이 저희 마트가 존재하는 이유입니다."</p>
+                                            <p class="font-bold text-right">- (주)제일가 대표&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-container">
+                                        <img src="https://r2.flowith.net/files/o/1754497362898-jeilga_mart_exterior_in_modern_korean_city_index_5@1024x1024.png" alt="제일가 마트 전경" class="main-gallery-image rounded-lg w-full h-80 object-cover mb-4" style="object-fit: cover;">
+                                        <div class="thumbnail-grid grid grid-cols-4 gap-2">
+                                            <img src="https://r2.flowith.net/files/o/1754497362898-jeilga_mart_exterior_in_modern_korean_city_index_5@1024x1024.png" alt="제일가 마트 전경" class="gallery-thumbnail rounded cursor-pointer border-2 h-20 w-full object-cover emerald-border">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549232657-image-1754549232003-cgr575jl2@841x409.png" alt="신선 식품 코너" class="gallery-thumbnail rounded cursor-pointer border-2 hover:emerald-border h-20 w-full object-cover border-transparent" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549232948-image-1754549232030-94j3vgpyi@837x728.png" alt="고객 이용 모습" class="gallery-thumbnail rounded cursor-pointer border-2 hover:emerald-border h-20 w-full object-cover border-transparent" style="object-fit: cover;">
+                                            <img src="https://r2.flowith.net/files/56268de7-3202-47c4-a357-b2ed30f8a683/1754549232965-image-1754549232074-nveejqice@841x735.png" alt="마트 외부 간판" class="gallery-thumbnail rounded cursor-pointer border-2 hover:emerald-border h-20 w-full object-cover border-transparent" style="object-fit: cover;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 4: The Aqua Difference -->
+            <section id="difference" class="py-24 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">어떤 방식에 투자하시겠습니까?</h2>
+                    <p class="section-subtitle">아쿠아홀딩스는 허황된 아이디어가 아닌, 눈에 보이는 실물 자산에 투자하여 안정성을 최우선으로 합니다.</p>
+                    <div class="max-w-4xl mx-auto overflow-x-auto">
+                        <table class="w-full min-w-max text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="p-4 border-b border-gray-700">구분</th>
+                                    <th class="p-4 border-b border-gray-700 emerald-text">아쿠아홀딩스 실물 공동투자</th>
+                                    <th class="p-4 border-b border-gray-700 text-gray-400">일반적인 아이디어 기반 투자</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-800">
+                                    <td class="p-4 font-bold">투자 대상</td>
+                                    <td class="p-4">✓ 이미 검증된 수백억 규모의 실물 인프라</td>
+                                    <td class="p-4 text-gray-400">✗ 아이디어나 초기 단계 비즈니스</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">담보 가치</td>
+                                    <td class="p-4">✓ 명확함 (양식장, 도매시장 등 구체적 실물)</td>
+                                    <td class="p-4 text-gray-400">✗ 불명확 또는 없음</td>
+                                </tr>
+                                <tr class="bg-gray-800">
+                                    <td class="p-4 font-bold">리스크</td>
+                                    <td class="p-4">✓ 실물 자산 기반으로 리스크 완화 추구</td>
+                                    <td class="p-4 text-gray-400">✗ 상대적으로 높음 (사업 실패 시 원금 손실 가능성)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">수익 구조</td>
+                                    <td class="p-4">✓ 운영 수익 배당 (안정적 현금 흐름 추구)</td>
+                                    <td class="p-4 text-gray-400">✗ 미래 가치에 대한 기대 (불확실, 장기간 소요)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">※ 상기 내용은 일반적인 투자 유형의 특징을 비교한 것이며, 개별 상품에 따라 차이가 있을 수 있습니다.</p>
+                </div>
+            </section>
+            <!-- Section 5: How It Works -->
+            <section id="how-it-works" class="py-24">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">투명한 수익 창출 구조</h2>
+                    <p class="section-subtitle">복잡한 투자를 쉽고 투명하게 만드는 아쿠아홀딩스의 시스템을 소개해 '나도 쉽게 할 수 있겠다'는 자신감과 '믿을 수 있는 시스템'이라는 신뢰를 동시에 제공합니다.</p>
+                    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+                        <div class="text-center p-4 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full emerald-bg flex items-center justify-center text-2xl mb-2">👤</div>
+                            <p class="font-bold">투자자</p>
+                        </div>
+                        <div class="text-3xl emerald-text font-thin mx-4 hidden md:block">→</div>
+                        <div class="text-3xl emerald-text font-thin my-2 md:hidden">↓</div>
+                        <div class="text-center p-4 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full emerald-bg flex items-center justify-center text-2xl mb-2">🏢</div>
+                            <p class="font-bold">아쿠아홀딩스</p>
+                        </div>
+                        <div class="text-3xl emerald-text font-thin mx-4 hidden md:block">→</div>
+                        <div class="text-3xl emerald-text font-thin my-2 md:hidden">↓</div>
+                        <div class="text-center p-4 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full emerald-bg flex items-center justify-center text-2xl mb-2">🐟</div>
+                            <p class="font-bold">실물 자산</p>
+                        </div>
+                        <div class="text-3xl emerald-text font-thin mx-4 hidden md:block">→</div>
+                        <div class="text-3xl emerald-text font-thin my-2 md:hidden">↓</div>
+                        <div class="text-center p-4 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full emerald-bg flex items-center justify-center text-2xl mb-2">📈</div>
+                            <p class="font-bold">수익 창출</p>
+                        </div>
+                        <div class="text-3xl emerald-text font-thin mx-4 hidden md:block">→</div>
+                        <div class="text-3xl emerald-text font-thin my-2 md:hidden">↓</div>
+                        <div class="text-center p-4 flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full emerald-bg flex items-center justify-center text-2xl mb-2">💰</div>
+                            <p class="font-bold">수익 배당</p>
+                        </div>
+                    </div>
+                    <div class="max-w-3xl mx-auto mt-16 bg-gray-800 p-8 rounded-2xl text-center">
+                        <h3 class="text-2xl font-bold mb-4 emerald-text">아쿠아홀딩스 공동투자의 시너지</h3>
+                        <p class="text-lg">아쿠아홀딩스는 단순히 개별 기업에 투자하는 것이 아닙니다. **[생산] → [가공/저장] → [유통]**으로 이어지는 원스톱 밸류체인을 공동 운영합니다. 이를 통해 불필요한 중간 유통 마진을 줄이고, 생산비를 절감하여 **수익성을 높이는 구조**를 만들었습니다. 이것이 바로 연 36%라는 높은 배당률을 '목표'로 할 수 있는 핵심 기반입니다.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 6: Trust and Safety Center (NEW) -->
+            <section id="trust-safety-center" class="py-24 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">아쿠아홀딩스 신뢰와 안전 센터</h2>
+                    <p class="section-subtitle">고객의 자산을 가장 안전하게 보호하고 투명하게 운영합니다.</p>
+                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
+                        <!-- Card 1: Investor Protection -->
+                        <div class="bg-gray-800 p-8 rounded-lg flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" class="lucide lucide-shield-check w-10 h-10 emerald-text mr-4 flex-shrink-0"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                                <h3 class="text-xl font-bold text-white">투자자 보호 시스템</h3>
+                            </div>
+                            <p class="text-gray-300 mb-4">아쿠아 RWA 토큰:<br>아쿠아 RWA 토큰은 실물 자산으로 투자 가치를 지킵니다.</p>
+                            <p class="text-gray-400 mb-6">아쿠아홀딩스는 고객님의 자산을 최우선으로 보호하기 위해, 실물 생산량에 기반한 다음과 같은 투명하고 강력한 3중 보호 조치를 마련했습니다.</p>
+                            <ul class="mt-auto space-y-3 text-gray-400">
+                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>실물 보증:</strong> 최상급 농수산물의 실물 가치에 연동</span></li>
+                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>투명한 가격:</strong> 실시간 도매 시장 시세 적용</span></li>
+                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>확실한 상환:</strong> 만기 시 현금 또는 실물 선택 보장</span></li>
+                            </ul>
+                        </div>
+                        <!-- Card 2: Transparent Process -->
+                        <div class="bg-gray-800 p-8 rounded-lg flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="workflow" class="lucide lucide-workflow w-10 h-10 emerald-text mr-4 flex-shrink-0"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+                                <h3 class="text-xl font-bold text-white">투명한 투자 과정</h3>
+                            </div>
+                            <p class="text-gray-300 mb-4">총 5단계의 체계적인 프로세스를 통해 투명성을 확보하고 리스크를 관리합니다.</p>
+                            <div class="mt-auto space-y-1 text-gray-400">
+                                <p><strong>1. 상품선정:</strong> 엄격한 기준으로 우량 실물자산 발굴</p>
+                                <p class="text-center text-emerald-400 text-xs">▼</p>
+                                <p><strong>2. 심사 및 분석:</strong> 현장 실사 및 다각도 수익성 분석</p>
+                                <p class="text-center text-emerald-400 text-xs">▼</p>
+                                <p><strong>3. 리스크 관리:</strong> 법률/재무 리스크 검토 및 안전장치 마련</p>
+                                <p class="text-center text-emerald-400 text-xs">▼</p>
+                                <p><strong>4. 투자자 모집:</strong> 명확한 정보 제공 기반 투자 진행</p>
+                                <p class="text-center text-emerald-400 text-xs">▼</p>
+                                <p><strong>5. 사후 관리:</strong> 정기 보고 및 실시간 현황 공유</p>
+                            </div>
+                        </div>
+                        <!-- Card 3: Security System -->
+                        <div class="bg-gray-800 p-8 rounded-lg flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock-keyhole" class="lucide lucide-lock-keyhole w-10 h-10 emerald-text mr-4 flex-shrink-0"><circle cx="12" cy="16" r="1"></circle><rect x="3" y="10" width="18" height="12" rx="2"></rect><path d="M7 10V7a5 5 0 0 1 10 0v3"></path></svg>
+                                <h3 class="text-xl font-bold text-white">철저한 보안 시스템</h3>
+                            </div>
+                            <p class="text-gray-300 mb-4">고객의 정보와 자산을 보호하기 위해 최고 수준의 기술적 보안 체계를 운영합니다.</p>
+                            <ul class="mt-auto space-y-3 text-gray-400">
+                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>데이터 암호화:</strong> 모든 개인정보 및 거래 데이터는 국제 표준 알고리즘으로 암호화됩니다.</span></li>
+                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>24시간 모니터링:</strong> 외부 침입과 비정상적인 접근을 365일 24시간 감시하고 즉각 대응합니다.</span></li>
+                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 emerald-text mr-2 mt-1 flex-shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg><span><strong>망분리 및 접근 제어:</strong> 내부 업무망과 외부 인터넷망을 분리하여 정보 유출을 원천 차단합니다.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 7: Testimonials -->
+            <section id="testimonials" class="py-24">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">먼저 경험한 투자자들의 이야기</h2>
+                    <p class="section-subtitle">"은행 이자만 보던 제게 신세계가 열렸습니다."</p>
+                    <div class="relative max-w-3xl mx-auto">
+                        <div id="testimonial-slider" class="overflow-hidden">
+                            <div id="testimonial-track" class="flex" style="transform: translateX(-4608px);">
+                                <!-- Slide 1 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"월급만으로는 답이 없어서 늘 재테크를 고민했지만, 주식은 무섭고 부동산은 돈이 없었죠. 아쿠아홀딩스는 실물 자산이라기에 상담받고 소액으로 시작했는데, 매달 꼬박꼬박 들어오는 배당금을 보니 정말 든든합니다. 왜 진작 안 했을까 싶어요."</p>
+                                        <p class="font-bold emerald-text">서울 거주 40대 직장인 김영희님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"은퇴 후 생활비가 걱정이었는데, 아들이 이곳을 추천해 줬습니다. 처음엔 수익률이 너무 높아 반신반의했지만, 직접 파트너사 방문 프로그램에 참여해보고 확신했습니다. 이젠 매달 나오는 배당금으로 아내와 여행 다니는 재미에 삽니다."</p>
+                                        <p class="font-bold emerald-text">부산 거주 50대 은퇴자 이강호님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 3 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"복잡한 건 딱 질색인데, 여긴 알아서 다 해주니 신경 쓸 게 없어서 좋습니다. 특히 CJ와 같은 수익 모델로 운영된다는 설명을 듣고 바로 투자했습니다. 제 포트폴리오 중에 가장 만족도가 높은 투자입니다."</p>
+                                        <p class="font-bold emerald-text">분당 거주 30대 전문직 박지훈님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 4 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"코딩하느라 시장 볼 시간이 없는데, 여긴 알아서 굴러가니 최고의 패시브 인컴입니다. 매달 들어오는 배당금으로 최신 IT 기기 사는 재미가 쏠쏠해요."</p>
+                                        <p class="font-bold emerald-text">판교 거주 30대 IT 개발자님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 5 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"남편 월급만으론 아이들 학원비가 벅찼는데, 쌈짓돈 모아 투자한 게 이렇게 효자 노릇을 할 줄 몰랐어요. 이제는 제가 아이들 간식비며 학원비며 당당하게 내줍니다."</p>
+                                        <p class="font-bold emerald-text">일산 거주 40대 주부님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 6 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"평생 아이들만 가르치다 보니 경제는 젬병이었죠. 은행 예금만 알았는데, 손주가 알려줘서 시작했습니다. 실물 자산이라니 믿음이 갔고, 지금은 제2의 월급처럼 든든합니다."</p>
+                                        <p class="font-bold emerald-text">대구 거주 60대 퇴직 교사님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 7 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"가게 운영하다 보면 현금 흐름이 늘 불안했는데, 아쿠아홀딩스 배당금이 매달 숨통을 틔워줍니다. 이제는 사업 확장 자금도 여기서 나오는 돈으로 모으고 있어요."</p>
+                                        <p class="font-bold emerald-text">광주 거주 30대 자영업자님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 8 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"부모님 도움 없이 제 힘으로 목돈을 만들고 싶었어요. 커피값, 술값 아껴서 매달 조금씩 투자했는데, 복리의 마법을 눈으로 보고 있습니다. 친구들에게도 추천하고 있어요."</p>
+                                        <p class="font-bold emerald-text">수원 거주 20대 사회초년생님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 9 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"한국에 있는 자산을 어떻게 굴릴까 고민이 많았는데, 비대면으로 상담받고 투자했습니다. 매달 달러로 환전해서 받는 배당금이 해외 생활에 큰 보탬이 됩니다."</p>
+                                        <p class="font-bold emerald-text">미국 거주 50대 교포님</p>
+                                    </div>
+                                </div>
+                                <!-- Slide 10 -->
+                                <div class="testimonial-slide w-full flex-shrink-0">
+                                    <div class="bg-gray-800 p-8 rounded-lg text-center">
+                                        <p class="text-lg mb-4">"환자 보느라 투자 공부할 시간이 없는데, 이곳 전문가들을 믿고 맡겼습니다. 실물 자산의 안정성과 전문가들의 운영 능력이 결합되니 마음 편한 투자가 가능하네요."</p>
+                                        <p class="font-bold emerald-text">강남 거주 40대 의사님</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="prev-testimonial" class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-4 sm:-translate-x-12 text-3xl text-gray-500 hover:emerald-text">‹</button>
+                        <button id="next-testimonial" class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-4 sm:translate-x-12 text-3xl text-gray-500 hover:emerald-text">›</button>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 8: Trust System -->
+            <section id="trust-system" class="py-24 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">아쿠아 신뢰 시스템: 투명성을 넘어 체험으로</h2>
+                    <p class="section-subtitle">"저희는 말로만 신뢰를 이야기하지 않습니다. 투자자가 언제든 보고, 듣고, 참여하고, 확인할 수 있는 4가지 동적인 신뢰 시스템을 운영합니다."</p>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                        <!-- Card 1 -->
+                        <div class="bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1 transition-all">
+                            <div class="text-5xl mb-4">🏢</div>
+                            <h3 class="text-xl font-bold mb-2">현장 실사 프로그램</h3>
+                            <p class="text-gray-400">매월 진행되는 파트너사 현장 방문 프로그램. 홈페이지를 통해 직접 신청하고, 당신의 투자가 이루어지는 역동적인 현장을 체험하세요.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1 transition-all">
+                            <div class="text-5xl mb-4">📊</div>
+                            <h3 class="text-xl font-bold mb-2">정기 운용 보고서</h3>
+                            <p class="text-gray-400">매월 또는 분기별로 발송되는 상세한 투자 운용 보고서. 내 돈이 어떻게 일하고 있는지, 모든 과정을 투명하게 공개합니다.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1 transition-all">
+                            <div class="text-5xl mb-4">💬</div>
+                            <h3 class="text-xl font-bold mb-2">경영진과의 라이브</h3>
+                            <p class="text-gray-400">CEO와 핵심 운용역이 직접 출연하는 정기 라이브 간담회. 실시간으로 질문하고, 회사의 비전을 직접 확인하세요.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1 transition-all">
+                            <div class="text-5xl mb-4">📹</div>
+                            <h3 class="text-xl font-bold mb-2">실시간 스트리밍</h3>
+                            <p class="text-gray-400">우리는 숨기는 것이 없습니다. 파트너사의 핵심 시설을 라이브로 송출합니다. 당신의 투자는 지금 이 순간에도 힘차게 움직이고 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 9: FAQ -->
+            <section id="faq" class="py-24">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <h2 class="section-title">자주 묻는 질문 (FAQ)</h2>
+                    <div id="accordion-container" class="space-y-4">
+                        <!-- FAQ Item 1 -->
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">일반적인 크라우드펀딩과 근본적으로 무엇이 다른가요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">가장 큰 차이는 '투자 대상의 실체와 안정성'입니다. 일반 플랫폼은 미래 가치를 지닌 아이디어나 검증되지 않은 스타트업에 투자하여 리스크가 매우 높습니다. 하지만 **아쿠아홀딩스 공동투자**는 이미 수년간 안정적으로 운영되며 수백억의 가치가 증명된 **실물 인프라(도매시장, 양식장 등)**에 투자합니다. 이는 투자 안정성에서 비교할 수 없는 차이를 만듭니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">목표 배당률 연 36%는 어떻게 가능한 건가요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">좋은 질문입니다. 아쿠아홀딩스의 높은 목표 배당률은 3가지 핵심 동력에 기반합니다.<br>1.  **독보적인 마진 구조:** 생산부터 유통까지 **원스톱으로 직접 운영**하여 중간 마진을 모두 수익으로 흡수합니다.<br>2.  **검증된 수익 모델:** 영주 도매시장은 **대기업 CJ와 동일한 방식**으로, 농산물을 저가에 대량 매입 후 저온 창고에 보관했다가 가격이 가장 높은 시점에 판매하여 높은 시세차익을 실현합니다.<br>3.  **규모의 경제:** 이미 수백억 규모로 구축된 파트너사들의 인프라를 공동 운영하여 생산 및 관리 비용을 획기적으로 절감합니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">원금 보장이 되나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">**아니요, 본 투자는 원금 보장 상품이 아닙니다.** 다만, 아이디어나 사업계획서에만 투자하는 다른 상품과 달리, 저희는 가치가 명확한 실물 자산을 기반으로 하므로 **원금 손실 리스크를 최소화**하는 구조를 갖추고 있습니다. 모든 투자 결정은 투자자 본인의 판단과 책임 하에 신중히 이루어져야 합니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">최소 투자 금액은 얼마이며, 투자 절차는 어떻게 되나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">아쿠아홀딩스 공동투자는 소액 투자자분들도 안정적인 고수익을 경험하실 수 있도록 문턱을 낮췄습니다. 최소 투자 금액 및 상세 절차는 **1:1 맞춤 상담**을 통해 가장 효율적인 포트폴리오와 함께 안내해 드리고 있습니다. 홈페이지의 `[전문가 상담 신청]` 버튼을 통해 문의하시면 전문가가 즉시 연락드려 투명하게 설명해 드립니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">배당금은 정확히 언제, 어떤 방식으로 지급되나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <p class="py-4 text-gray-300">배당금은 매월 투자자님의 지정 계좌로 직접 입금되는 것을 원칙으로 하여, 투자자분들이 매달 현금 흐름을 직접 체감하실 수 있도록 설계했습니다. 첫 배당금 지급 시점 및 정확한 지급일 등 세부 사항은 투자 계약 시점에 명확하게 안내해 드립니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">투자를 중도에 해지하거나 원금을 회수하고 싶을 경우 어떻게 하나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">본 투자는 단기 시세차익이 아닌, 실물 자산의 장기적인 운영 수익을 공유하는 모델입니다. 따라서 안정적인 운영을 위해 정해진 투자 기간이 설정되어 있습니다. 다만, 투자자의 긴급한 유동성 확보 필요 등 예외적인 상황에 대비한 중도 해지 및 양수도(투자자 간 거래) 규정을 마련해두고 있습니다. 이 역시 1:1 상담을 통해 자세한 조건과 절차를 안내받으실 수 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">투자 대상인 양식장이나 도매시장을 직접 방문해서 눈으로 확인할 수 있나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">물론입니다. 저희는 '아쿠아 신뢰 시스템'의 일환으로 정기적인 **현장 실사 프로그램**을 운영하고 있습니다. 홈페이지를 통해 직접 신청하시고, 당신의 투자가 이루어지는 역동적인 현장을 직접 확인하십시오.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">만약 파트너사 중 한 곳이 경영난을 겪거나 자연재해(질병 등)가 발생하면 제 투자는 어떻게 되나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <p class="py-4 text-gray-300">매우 중요한 질문입니다. 저희는 단일 자산이 아닌, **서로 다른 지역과 품목을 다루는 4개의 우량 파트너사**에 분산 투자함으로써 개별 리스크를 최소화했습니다. 예를 들어, 한 양식장에 문제가 발생하더라도 다른 양식장과 농산물 도매시장의 수익으로 전체 포트폴리오의 안정성을 유지하는 구조입니다. 또한, 수십 년간 안정적으로 운영된 파트너사들의 노하우와 실물 자산 가치가 리스크를 방어하는 핵심적인 역할을 합니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">오피스텔이나 상가 같은 다른 수익형 부동산 투자와 비교하면 어떤 장점이 있나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <p class="py-4 text-gray-300">공실, 세입자 관리, 부동산 정책 변화 등 예측 불가능한 변수가 많은 일반 수익형 부동산과 달리, 아쿠아홀딩스 공동투자는 몇 가지 명확한 장점이 있습니다.<br>1.  **관리의 편리함:** 모든 운영과 관리는 아쿠아홀딩스와 전문 파트너사가 책임지므로 투자자는 신경 쓸 필요가 없습니다.<br>2.  **경기 둔감성:** 부동산 경기는 변동성이 크지만, '먹거리'를 다루는 농수산 기간산업은 경기에 비교적 둔감하여 훨씬 안정적인 수익 창출이 가능합니다.<br>3.  **높은 목표 수익률:** 일반 상업용 부동산의 기대수익률(연 4~5%)과는 비교할 수 없는 높은 목표 배당률(연 36%)을 추구합니다.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="font-bold text-lg">'장기 배당'을 강조하는데, 회사가 그만큼 오랫동안 지속 가능하다고 어떻게 믿을 수 있나요?</span>
+                                <span class="accordion-icon text-2xl emerald-text transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content px-6" style="">
+                                <p class="py-4 text-gray-300">저희의 비전은 **'장기적이고 안정적인 배당'**을 실현하는 것입니다. 그 자신감은 대한민국 농수산 유통이라는 '필수 산업'에 뿌리내리고 있기 때문입니다. 사람은 경기가 좋든 나쁘든 먹어야만 하고, 저희의 사업은 바로 그 지점에서 출발합니다. 현재의 안정적인 파트너십에 더해, 저희는 농수산물 수출 계약 등을 추진하며 지속적으로 사업 영역을 확장하고 있습니다. 5년 내 수백억 규모의 추가 자산을 확보하는 등 명확한 성장 로드맵을 통해 영속적인 기업으로 성장하여 투자자분들께 **장기적인 현금 흐름**을 제공하는 것이 아쿠아홀딩스의 궁극적인 목표입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 10: Media & Trust Center -->
+            <section id="media" class="py-24 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">언론 속 아쿠아홀딩스&nbsp;</h2>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto place-items-center">
+                        <div class="max-w-3xl mx-auto mt-16 bg-gray-800 p-6 rounded-lg col-span-2">
+                            <h3 class="text-xl font-bold mb-4 text-center">언론이 주목한 아쿠아홀딩스, 다양한 포털사이트에서 '아쿠아홀딩스' 검색</h3>
+                            <div class="flex justify-around items-center grayscale opacity-60">
+                                <span class="text-2xl font-bold">네이버</span>
+                                <span class="text-2xl font-bold">구글</span>
+                                <span class="text-2xl font-bold">다음</span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="bg-gray-800 p-6 rounded-lg" style="display: none; visibility: hidden; opacity: 0; pointer-events: none; position: absolute; z-index: -999999;" aria-hidden="true">
+                            <h3 class="text-xl font-bold mb-4 text-center">모든 것을 증명하는 문서</h3>
+                            <div class="flex flex-col space-y-2">
+                                <a href="#" class="text-emerald-400 hover:underline">아쿠아홀딩스 사업자등록증 [PDF 다운로드]</a>
+                                <a href="#" class="text-emerald-400 hover:underline">영주 도매시장 경매장 허가증 (요약본) [PDF 다운로드]</a>
+                                <a href="#" class="text-emerald-400 hover:underline">파트너사 부동산 등기부등본 (주요사항 요약) [PDF 다운로드]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section 11: Final CTA -->
+            <section id="final-cta" class="py-24 bg-gray-800">
+                <div class="container mx-auto px-6 text-center max-w-3xl">
+                    <h2 class="text-3xl md:text-4xl font-black mb-4 text-white">지금, 대한민국 농수산 유통의 미래가<br>당신의 투자를 기다립니다.</h2>
+                    <p class="text-lg text-gray-300 mb-8">전문가와 1:1 맞춤 상담을 통해 당신의 포트폴리오를 혁신하세요. 실물 자산 투자의 안정성과 높은 목표 배당률의 기회를 놓치지 마십시오.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbb7bYNwQBfuog7ZO6mkmJ4KftN6f2H3qTn6REpDPwy3DEMw/viewform?embedded=true" target="_blank" class="inline-block bg-emerald-600 text-white px-10 py-4 rounded-lg text-xl font-bold hover:bg-emerald-700 transition duration-300">연 36% 목표 배당, 지금 상담 신청하기</a>
+                    <p class="text-sm text-gray-500 mt-4">'상담 신청은 투자 결정이 아니며, 어떠한 비용도 발생하지 않습니다.'</p>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-gray-900 py-8">
+            <div class="container mx-auto px-6 text-center text-gray-500">
+                <p class="">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
+                <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: 1688 XXXX</p>
+                <p class="mt-4 text-sm">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Initialize Lucide Icons
+                lucide.createIcons();
+                
+                // Mobile Menu
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
+                const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
+                const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
+                
+                // 모바일 Data room 하위 메뉴 토글
+                dataRoomMobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dataRoomMobileSubmenu.classList.toggle('hidden');
+                    dataRoomMobileIcon.classList.toggle('rotate-180');
+                });
+                
+                // Header scroll effect
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('py-2');
+                        header.classList.remove('py-4');
+                    } else {
+                        header.classList.remove('py-2');
+                        header.classList.add('py-4');
+                    }
+                });
+                // Status Counter Animation
+                const animateValue = (obj, start, end, duration) => {
+                    let startTimestamp = null;
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString('ko-KR');
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                };
+                const observeCounter = (elementId) => {
+                    const target = document.getElementById(elementId);
+                    if(!target) return;
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const value = parseInt(target.dataset.value);
+                                animateValue(target, 0, value, 2000);
+                                observer.unobserve(target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    observer.observe(target);
+                };
+                observeCounter('total-investment');
+                observeCounter('total-dividend');
+                // Tabs for "The Proof" section
+                const tabsContainer = document.getElementById('tabs-container');
+                if(tabsContainer){
+                    const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+                    const tabPanes = tabsContainer.querySelectorAll('.tab-pane');
+                    tabButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            tabButtons.forEach(btn => btn.classList.remove('active'));
+                            tabPanes.forEach(pane => pane.classList.add('hidden'));
+                            button.classList.add('active');
+                            const tabId = button.dataset.tab;
+                            document.getElementById(tabId).classList.remove('hidden');
+                        });
+                    });
+                }
+                // Gallery functionality within tabs
+                const galleryContainers = document.querySelectorAll('.gallery-container');
+                galleryContainers.forEach(container => {
+                    const mainImage = container.querySelector('.main-gallery-image');
+                    const thumbnails = container.querySelectorAll('.gallery-thumbnail');
+                    thumbnails.forEach(thumb => {
+                        thumb.addEventListener('click', () => {
+                            mainImage.src = thumb.src;
+                            thumbnails.forEach(t => {
+                                t.classList.remove('emerald-border');
+                                t.classList.add('border-transparent');
+                            });
+                            thumb.classList.remove('border-transparent');
+                            thumb.classList.add('emerald-border');
+                        });
+                    });
+                });
+                // Testimonial Slider
+                const slider = document.getElementById('testimonial-slider');
+                if(slider){
+                    const track = document.getElementById('testimonial-track');
+                    const slides = Array.from(track.children);
+                    const nextButton = document.getElementById('next-testimonial');
+                    const prevButton = document.getElementById('prev-testimonial');
+                    let currentIndex = 0;
+                    const updateSlidePosition = () => {
+                        if (slides.length === 0) return;
+                        const slideWidth = slides[0].getBoundingClientRect().width;
+                        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                    }
+                    const moveToSlide = (index) => {
+                        if (slides.length === 0) return;
+                        currentIndex = index;
+                        updateSlidePosition();
+                    };
+                    nextButton.addEventListener('click', () => {
+                        let nextIndex = currentIndex + 1;
+                        if (nextIndex >= slides.length) {
+                            nextIndex = 0;
+                        }
+                        moveToSlide(nextIndex);
+                    });
+                    prevButton.addEventListener('click', () => {
+                        let prevIndex = currentIndex - 1;
+                        if (prevIndex < 0) {
+                            prevIndex = slides.length - 1;
+                        }
+                        moveToSlide(prevIndex);
+                    });
+                    setInterval(() => {
+                        let nextIndex = currentIndex + 1;
+                        if (nextIndex >= slides.length) {
+                            nextIndex = 0;
+                        }
+                        moveToSlide(nextIndex);
+                    }, 5000); 
+                    window.addEventListener('resize', updateSlidePosition);
+                }
+                // FAQ Accordion
+                const accordionContainer = document.getElementById('accordion-container');
+                if(accordionContainer){
+                    const accordionButtons = accordionContainer.querySelectorAll('.accordion-button');
+                    accordionButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const content = button.nextElementSibling;
+                            const icon = button.querySelector('.accordion-icon');
+                            const isOpening = !content.style.maxHeight;
+                            accordionButtons.forEach(otherButton => {
+                                if(otherButton !== button && otherButton.nextElementSibling.style.maxHeight) {
+                                    otherButton.nextElementSibling.style.maxHeight = null;
+                                    otherButton.querySelector('.accordion-icon').classList.remove('rotate-45');
+                                    otherButton.querySelector('.accordion-icon').textContent = '+';
+                                }
+                            });
+                            if (isOpening) {
+                                content.style.maxHeight = content.scrollHeight + 'px';
+                                icon.classList.add('rotate-45');
+                                icon.textContent = '−';
+                            } else {
+                                content.style.maxHeight = null;
+                                icon.classList.remove('rotate-45');
+                                icon.textContent = '+';
+                            }
+                        });
+                    });
+                }
+                // Smooth scroll for nav links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
+                });
+                
+                // PC Data room menu click toggle
+                const pcDataRoomButton = document.querySelector('#pc-data-room-button');
+                const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
+                
+                pcDataRoomButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    pcDataRoomSubmenu.classList.toggle('hidden');
+                });
+                
+                // Hide PC submenu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
+                        pcDataRoomSubmenu.classList.add('hidden');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
