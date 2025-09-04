@@ -8,6 +8,11 @@
         <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
     </head>
     <body>
-        <iframe src="https://aquaholdings.co.kr/dataroom/intro-aqua.pdf" style="width:100%; height:100vh; border:none;"></iframe>
+        <script>
+            // 페이지 로드 시 PDF 파일을 새 탭에서 자동으로 엽니다.
+            window.onload = function() {
+                window.open("https://aquaholdings.co.kr/dataroom/intro-aqua.pdf", "_blank");
+            };
+        </script>
     </body>
 </html>
