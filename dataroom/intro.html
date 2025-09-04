@@ -7,7 +7,42 @@
         <link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
         <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
     </head>
-    <body>
-        <iframe src="https://aquaholdings.co.kr/dataroom/intro-aqua.pdf" style="width:100%; height:100vh; border:none;"></iframe>
+    <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex items-center justify-center min-h-screen">
+        <div id="loading-message" class="text-center">
+            <p>PDF 파일을 불러오는 중입니다...</p>
+        </div>
+
+        <iframe id="pdf-viewer" src="https://aquaholdings.co.kr/dataroom/intro-aqua.pdf" style="width:100%; height:100vh; border:none; visibility:hidden;"></iframe>
+
+        <div id="fallback-message" class="hidden text-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-sm mx-auto">
+            <p class="mb-4">PDF 파일이 자동으로 표시되지 않습니다.</p>
+            <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">파일을 열거나 다운로드하려면 아래 버튼을 눌러주세요.</p>
+            <a href="https://aquaholdings.co.kr/dataroom/intro-aqua.pdf" target="_blank" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                PDF 파일 열기
+            </a>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const pdfViewer = document.getElementById('pdf-viewer');
+                const loadingMessage = document.getElementById('loading-message');
+                const fallbackMessage = document.getElementById('fallback-message');
+                let isIframeLoaded = false;
+                
+                // 3초 후에도 iframe이 로드되지 않으면 대체 메시지 표시
+                setTimeout(() => {
+                    if (!isIframeLoaded) {
+                        loadingMessage.classList.add('hidden');
+                        fallbackMessage.classList.remove('hidden');
+                    }
+                }, 3000);
+
+                pdfViewer.onload = () => {
+                    isIframeLoaded = true;
+                    loadingMessage.classList.add('hidden');
+                    pdfViewer.style.visibility = 'visible';
+                };
+            });
+        </script>
     </body>
 </html>
