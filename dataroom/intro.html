@@ -4,45 +4,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>아쿠아홀딩스 소개</title>
-        <link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
-        <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Noto Sans KR', sans-serif;
+                background-color: #f7f7f7;
+            }
+            .pdf-page {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin: 20px auto;
+            }
+            @media (min-width: 768px) {
+                .pdf-page {
+                    max-width: 800px;
+                }
+            }
+        </style>
     </head>
-    <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex items-center justify-center min-h-screen">
-        <div id="loading-message" class="text-center">
-            <p>PDF 파일을 불러오는 중입니다...</p>
+    <body>
+        <div class="pdf-container mx-auto p-4">
+            <!-- 페이지를 이미지로 변환하여 여기에 추가 -->
+            <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_1.png" alt="PDF 페이지 1" class="pdf-page w-full">
+            <img src="https://aquaholdings.co.kr/dataroom/page-2.jpg" alt="PDF 페이지 2" class="pdf-page w-full">
+            <img src="https://aquaholdings.co.kr/dataroom/page-3.jpg" alt="PDF 페이지 3" class="pdf-page w-full">
+            <img src="https://aquaholdings.co.kr/dataroom/page-4.jpg" alt="PDF 페이지 4" class="pdf-page w-full">
+            <img src="https://aquaholdings.co.kr/dataroom/page-5.jpg" alt="PDF 페이지 5" class="pdf-page w-full">
         </div>
-
-        <iframe id="pdf-viewer" src="https://aquaholdings.co.kr/dataroom/intro-aqua.pdf" style="width:100%; height:100vh; border:none; visibility:hidden;"></iframe>
-
-        <div id="fallback-message" class="hidden text-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-sm mx-auto">
-            <p class="mb-4">PDF 파일이 자동으로 표시되지 않습니다.</p>
-            <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">파일을 열거나 다운로드하려면 아래 버튼을 눌러주세요.</p>
-            <a href="https://aquaholdings.co.kr/dataroom/intro-aqua.pdf" target="_blank" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
-                PDF 파일 열기
-            </a>
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const pdfViewer = document.getElementById('pdf-viewer');
-                const loadingMessage = document.getElementById('loading-message');
-                const fallbackMessage = document.getElementById('fallback-message');
-                let isIframeLoaded = false;
-                
-                // 3초 후에도 iframe이 로드되지 않으면 대체 메시지 표시
-                setTimeout(() => {
-                    if (!isIframeLoaded) {
-                        loadingMessage.classList.add('hidden');
-                        fallbackMessage.classList.remove('hidden');
-                    }
-                }, 3000);
-
-                pdfViewer.onload = () => {
-                    isIframeLoaded = true;
-                    loadingMessage.classList.add('hidden');
-                    pdfViewer.style.visibility = 'visible';
-                };
-            });
-        </script>
     </body>
 </html>
