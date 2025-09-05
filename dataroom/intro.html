@@ -8,8 +8,13 @@
         <title>아쿠아홀딩스 소개</title>
         <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <style>
             body {
                 font-family: 'Noto Sans KR', sans-serif;
@@ -67,7 +72,7 @@
                 right: 10px;
             }
         </style>
-            <body class="bg-gray-900 text-gray-200">
+    <body class="bg-gray-900 text-gray-200">
         <!-- Header -->
         <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
             <div class="container mx-auto px-6 flex justify-between items-center text-white">
@@ -79,12 +84,12 @@
                     <a href="/index.html#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
                     <div id="pc-data-room-container" class="relative">
                         <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
-	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
-	                            <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
-	                            <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
-	                            <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+                            <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+                                <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                                <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                                <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
                                 <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
-	                            <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                                <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
                         </div>
                     </div>
                     <a href="/index.html#faq" class="hover:emerald-text transition">FAQ</a>
@@ -149,47 +154,7 @@
                     }
                 });
             });
-        </script>
-        
-        <div id="pdf-container" class="pdf-container mx-auto mt-24">
-            <div class="relative">
-                <div id="pdf-slider" class="pdf-slider">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_1.png" alt="PDF 페이지 1" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_2.png" alt="PDF 페이지 2" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_3.png" alt="PDF 페이지 3" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_4.png" alt="PDF 페이지 4" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_5.png" alt="PDF 페이지 5" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_6.png" alt="PDF 페이지 6" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_7.png" alt="PDF 페이지 7" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_8.png" alt="PDF 페이지 8" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_9.png" alt="PDF 페이지 9" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_10.png" alt="PDF 페이지 10" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_11.png" alt="PDF 페이지 11" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_12.png" alt="PDF 페이지 12" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_13.png" alt="PDF 페이지 13" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_14.png" alt="PDF 페이지 14" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_15.png" alt="PDF 페이지 15" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_16.png" alt="PDF 페이지 16" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_17.png" alt="PDF 페이지 17" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_18.png" alt="PDF 페이지 18" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_19.png" alt="PDF 페이지 19" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_20.png" alt="PDF 페이지 20" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_21.png" alt="PDF 페이지 21" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_22.png" alt="PDF 페이지 22" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_23.png" alt="PDF 페이지 23" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_24.png" alt="PDF 페이지 24" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_25.png" alt="PDF 페이지 25" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_27.png" alt="PDF 페이지 27" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_28.png" alt="PDF 페이지 28" class="pdf-page">
-                </div>
-                <button id="prev-button" class="nav-button prev">&#10094;</button>
-                <button id="next-button" class="nav-button next">&#10095;</button>
-            </div>
-            <div class="text-center mt-4">
-                <span id="page-counter" class="text-sm text-gray-400">1 / 28</span>
-            </div>
-        </div>
-        <script>
+
             document.addEventListener('DOMContentLoaded', () => {
                 const sliderContainer = document.getElementById('pdf-container');
                 const slider = document.getElementById('pdf-slider');
@@ -235,5 +200,44 @@
                 updateSlider();
             });
         </script>
+        
+        <div id="pdf-container" class="pdf-container mx-auto mt-24">
+            <div class="relative">
+                <div id="pdf-slider" class="pdf-slider">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_1.png" alt="PDF 페이지 1" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_2.png" alt="PDF 페이지 2" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_3.png" alt="PDF 페이지 3" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_4.png" alt="PDF 페이지 4" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_5.png" alt="PDF 페이지 5" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_6.png" alt="PDF 페이지 6" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_7.png" alt="PDF 페이지 7" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_8.png" alt="PDF 페이지 8" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_9.png" alt="PDF 페이지 9" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_10.png" alt="PDF 페이지 10" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_11.png" alt="PDF 페이지 11" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_12.png" alt="PDF 페이지 12" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_13.png" alt="PDF 페이지 13" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_14.png" alt="PDF 페이지 14" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_15.png" alt="PDF 페이지 15" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_16.png" alt="PDF 페이지 16" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_17.png" alt="PDF 페이지 17" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_18.png" alt="PDF 페이지 18" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_19.png" alt="PDF 페이지 19" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_20.png" alt="PDF 페이지 20" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_21.png" alt="PDF 페이지 21" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_22.png" alt="PDF 페이지 22" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_23.png" alt="PDF 페이지 23" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_24.png" alt="PDF 페이지 24" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_25.png" alt="PDF 페이지 25" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_27.png" alt="PDF 페이지 27" class="pdf-page">
+                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_28.png" alt="PDF 페이지 28" class="pdf-page">
+                </div>
+                <button id="prev-button" class="nav-button prev">&#10094;</button>
+                <button id="next-button" class="nav-button next">&#10095;</button>
+            </div>
+            <div class="text-center mt-4">
+                <span id="page-counter" class="text-sm text-gray-400">1 / 28</span>
+            </div>
+        </div>
     </body>
 </html>
