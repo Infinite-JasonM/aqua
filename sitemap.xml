@@ -1,31 +1,47 @@
----
- ---
- <?xml version="1.0" encoding="UTF-8"?>
- <urlset 
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" 
-     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   {% for post in site.posts %}
-     <url>
-       <loc>{{ site.url }}{{ post.url }}</loc>
-       {% if post.lastmod == null %}
-         <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-       {% else %}
-         <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
-       {% endif %}
-    
-       {% if post.sitemap.changefreq == null %}
-         <changefreq>daily</changefreq>
-       {% else %}
-         <changefreq>{{ post.sitemap.changefreq }}</changefreq>
-       {% endif %}
-    
-       {% if post.sitemap.priority == null %}
-           <priority>0.5</priority>
-       {% else %}
-         <priority>{{ post.sitemap.priority }}</priority>
-       {% endif %}
-    
-     </url>
-   {% endfor %}
- </urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://aquaholdings.co.kr/</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://aquaholdings.co.kr/dataroom/newsall.html</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aquaholdings.co.kr/dataroom/gallery.html</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aquaholdings.co.kr/dataroom/calculator.html</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aquaholdings.co.kr/dataroom/intro.html</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aquaholdings.co.kr/dataroom/msg-1.html</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aquaholdings.co.kr/index.html</loc>
+  <lastmod>2025-09-09T05:38:14+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
