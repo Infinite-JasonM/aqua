@@ -15,13 +15,6 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <style>
         /* 기본 스타일 초기화 및 폰트 설정 */
         body {
@@ -44,7 +37,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 180px;
+            padding: 0 20px; /* 모바일 반응형을 위해 패딩 조정 */
         }
 
         /* 헤더 섹션 스타일 */
@@ -169,22 +162,14 @@
                 transform: translateY(0);
             }
         }
-
-
-        /* 푸터 스타일 */
-/*        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            color: #757575;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-*/      
-
+        
         /* 모바일 화면 대응 (768px 이하) */
         @media (max-width: 768px) {
             .container {
-                padding: 0px 60px;
+                padding: 0 20px; /* 모바일 패딩 조정 */
+            }
+            .header {
+                margin-top: 80px;
             }
             .header h1 {
                 font-size: 2.2rem;
@@ -207,139 +192,69 @@
             }
         }
         .emerald-text { color: #10B981; }
-        .emerald-bg { background-color: #10B981; }
-        .emerald-border { border-color: #10B981; }
-        .section-title {
-            font-size: 2.25rem;
-            font-weight: 900;
-            line-height: 1.2;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: #9CA3AF;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 4rem auto;
-        }
-        .tab-button.active {
-            background-color: #10B981;
-            color: #FFFFFF;
-        }
-        .tab-button {
-            transition: all 0.3s ease;
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .testimonial-slide {
-            transition: transform 0.5s ease-in-out;
-        }
-        .gallery-thumbnail {
-            transition: border-color 0.2s ease-in-out;
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
     <!-- Header. 메뉴부 -->
     <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
-        <div class="container mx-auto px-6 flex justify-between items-center text-white">
+        <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center text-white">
             <a href="/index.html#hero" class="text-2xl font-bold emerald-text flex items-center">
 				<img src="/아쿠아홀딩스 새 로고(배경 투명).png" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
 			</a>
-                <nav class="hidden md:flex space-x-6 items-center">
-                    <a href="/index.html#proof" class="hover:emerald-text transition">투자 실체</a>
-                    <a href="/index.html#difference" class="hover:emerald-text transition">차별점</a>
-                    <a href="/index.html#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
-                    <a href="/index.html#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
-                    <div id="pc-data-room-container" class="relative">
-                        <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
-	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
-	                            <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
-	                            <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
-                                <!--
-                                <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
-                                -->
-                                <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공식 브로슈어</a>
-	                            <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
-                        </div>
-                    </div>
-                    <a href="/index.html#faq" class="hover:emerald-text transition">FAQ</a>
-                    <a href="/index.html#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
-                <a href="/index.html#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
-                <a href="/index.html#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
-                <a href="/index.html#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
-                <a href="/index.html#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
-                <div id="data-room-mobile-toggle" class="relative">
-                    <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
-                        Data room
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
-                        <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
-                        <a href="/dataroom/gallery.html" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
-                        <!--
-                        <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
-                        -->
-                        <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공식 브로슈어</a>
-                        <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="/index.html#proof" class="hover:emerald-text transition">투자 실체</a>
+                <a href="/index.html#difference" class="hover:emerald-text transition">차별점</a>
+                <a href="/index.html#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
+                <a href="/index.html#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
+                <div id="pc-data-room-container" class="relative">
+                    <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+                    <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+                        <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                        <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                        <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공식 브로슈어</a>
+                        <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
                     </div>
                 </div>
-                <a href="/index.html#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
-                <a href="/index.html#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+                <a href="/index.html#faq" class="hover:emerald-text transition">FAQ</a>
+                <a href="/index.html#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <a href="/index.html#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+            <a href="/index.html#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+            <a href="/index.html#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+            <a href="/index.html#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+            <div id="data-room-mobile-toggle" class="relative">
+                <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                    Data room
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                    <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                    <a href="/dataroom/gallery.html" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                    <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공식 브로슈어</a>
+                    <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                </div>
+            </div>
+            <a href="/index.html#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+            <a href="/index.html#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
         </div>
     </header>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const pcDataRoomButton = document.querySelector('#pc-data-room-button');
-            const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
-            const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
-            const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
-
-            pcDataRoomButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                pcDataRoomSubmenu.classList.toggle('hidden');
-            });
-            
-            document.addEventListener('click', (e) => {
-                if (!pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
-                    pcDataRoomSubmenu.classList.add('hidden');
-                }
-            });
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            dataRoomMobileToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dataRoomMobileSubmenu.classList.toggle('hidden');
-                dataRoomMobileIcon.classList.toggle('rotate-180');
-            });
-        });
-    </script>
-    <main>
+    
+    <!-- 본문 시작: 상단 헤더와의 간격을 위해 pt-24 추가 -->
+    <main class="pt-24">
         <div class="container">
             <!-- 페이지 헤더 -->
-            <header class="header">
+            <div class="header">
                 <h1>아쿠아가 준비한 수백억원 자산을 갤러리에서 확인하세요.</h1>
                 <p>생산부터 유통, 판매까지. 아쿠아홀딩스는 독보적인 가치 사슬을 통해 지속 가능한 성장을 만들어갑니다.</p>
-            </header>
+            </div>
 
             <!-- 자산 포트폴리오 그리드 -->
-            <main class="portfolio-grid">
+            <div class="portfolio-grid">
                 
                 <!-- 카드 1: 21세기수산 -->
                 <a href="https://photos.app.goo.gl/En18YrcXJEfRxksg9" target="_blank" rel="noopener noreferrer" class="card-wrapper">
@@ -392,6 +307,7 @@
                 <!-- 카드 5: 공식 홈페이지 -->
                 <a href="http://www.aquaholdings.co.kr" target="_blank" rel="noopener noreferrer" class="card-wrapper">
                     <div class="card">
+                        <img src="https://i.imgur.com/yD2B3Wl.png" alt="아쿠아홀딩스 공식 홈페이지" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a237e/ffffff?text=Aqua+Holdings';">
                         <div class="card-content">
                             <h3>공식 홈페이지</h3>
                             <p>아쿠아홀딩스의 비전과 최신 소식을 가장 먼저 확인해 보세요.</p>
@@ -403,6 +319,7 @@
                 <!-- 카드 6: 카카오톡 단톡방 -->
                 <a href="https://open.kakao.com/o/gexkXLGh" target="_blank" rel="noopener noreferrer" class="card-wrapper">
                     <div class="card">
+                        <img src="https://i.imgur.com/s6K8d7v.png" alt="카카오톡 아이콘" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/f7e600/3c1e1e?text=KakaoTalk';">
                         <div class="card-content">
                             <h3>카카오톡 단톡방</h3>
                             <p>실시간으로 소통하며 유용한 투자 정보를 공유하는 공간입니다.</p>
@@ -410,17 +327,54 @@
                         </div>
                     </div>
                 </a>
-            </main>
+            </div>
 
             <!-- 페이지 푸터 -->
-	        <footer class="bg-gray-900 py-8">
-	            <div class="container mx-auto px-6 text-center text-gray-500">
-	                <p class="">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
-	                <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="text-sm mt-2 text-center inline-block bg-yellow-500 text-white px-2 py-0.5 rounded-lg hover:bg-emerald-600 transition duration-300 shadow-lg"> 카카오 CS 채널</a></p>
-	                <p class="mt-4 text-sm">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
+	        <footer class="mt-20 py-12 border-t border-white/10 bg-black/20">
+	            <div class="container mx-auto px-6 text-center text-gray-400">
+	                <p class="text-sm">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
+	                <p class="text-sm mt-2">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호</p>
+                    <div class="mt-4">
+                        <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="text-sm inline-block bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition duration-300 shadow-lg">카카오 채널 문의</a>
+                    </div>
+	                <p class="mt-6 text-xs text-gray-500">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
 	            </div>
 	        </footer>
         </div>
     </main>
+    <script>
+        // 메뉴 관련 스크립트
+        document.addEventListener('DOMContentLoaded', function () {
+            const pcDataRoomButton = document.querySelector('#pc-data-room-button');
+            const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
+            const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
+            const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
+
+            pcDataRoomButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                pcDataRoomSubmenu.classList.toggle('hidden');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (pcDataRoomButton && !pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
+                    pcDataRoomSubmenu.classList.add('hidden');
+                }
+            });
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            dataRoomMobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dataRoomMobileSubmenu.classList.toggle('hidden');
+                dataRoomMobileIcon.classList.toggle('rotate-180');
+            });
+        });
+    </script>
 </body>
 </html>
+
