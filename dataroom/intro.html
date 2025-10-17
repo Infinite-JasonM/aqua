@@ -1,262 +1,164 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
-        <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title>아쿠아홀딩스 주요 사업 안내</title>
-		<!--아쿠아홀딩스는 농/수산 생산 및 경매/도매 시장과 물류 유통 전 과정을 직접 관리하며 코스트 블로트(Cost Bloat)를 낮춤으로써 보다 높은 수익을 창출합니다.-->
-		<!--아쿠아홀딩스 - 농/수산물 생태계 기반의 현실적인 수익 창출 공동투자 플랫폼-->
-		<!--실물 경제/자산기반의 투자 플랫폼으로 더욱 안정적인 공동투자의 새로운 기준을 제시합니다.-->
-        <meta name="description" content="아쿠아홀딩스는 농/수산 생산 및 경매/도매 시장과 물류 유통 전 과정을 직접 관리하며 코스트 블로트(Cost Bloat)를 낮춤으로써 보다 높은 수익을 창출합니다.">
-	    <meta name="robots" content="intro, follow">
-	    <meta property="og:title" content="아쿠아홀딩스 - 농/수산물 생태계 기반의 현실적인 수익 창출 공동투자 플랫폼">
-	    <meta property="og:description" content="실물 경제/자산기반의 투자 플랫폼으로 더욱 안정적인 공동투자의 새로운 기준을 제시합니다.">
-        
-        <!-- Tailwind CSS CDN -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://unpkg.com/lucide@latest"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-        <style>
-            body {
-                font-family: 'Noto Sans KR', sans-serif;
-                background-color: #f7f7f7;
-            }
+<head>
+    <link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
+    <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>아쿠아홀딩스 주요 사업 안내</title>
+    <meta name="description" content="아쿠아홀딩스는 농/수산 생산 및 경매/도매 시장과 물류 유통 전 과정을 직접 관리하며 코스트 블로트(Cost Bloat)를 낮춤으로써 보다 높은 수익을 창출합니다.">
+    <meta name="robots" content="intro, follow">
+    <meta property="og:title" content="아쿠아홀딩스 - 농/수산물 생태계 기반의 현실적인 수익 창출 공동투자 플랫폼">
+    <meta property="og:description" content="실물 경제/자산기반의 투자 플랫폼으로 더욱 안정적인 공동투자의 새로운 기준을 제시합니다.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 사용자 정의 스타일 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
 
-            .emerald-text { color: #10B981; }
-            .emerald-bg { background-color: #10B981; }
-            .emerald-border { border-color: #10B981; }
-            .section-title {
-                font-size: 2.25rem;
-                font-weight: 900;
-                line-height: 1.2;
-                text-align: center;
-                margin-bottom: 1rem;
-            }
+        .emerald-text { color: #10B981; }
+        .emerald-bg { background-color: #10B981; }
+        
+        /* PDF 뷰어 컨테이너 스타일 */
+        .pdf-container {
+            max-width: 900px;
+            width: 95%; /* 화면 너비에 따라 유연하게 조절 */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
+            background-color: #1F2937; /* bg-gray-800 */
+            padding: 1rem;
+        }
 
-            .pdf-container {
-                position: relative;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                border-radius: 10px;
-                overflow: hidden; /* This is key for the carousel effect */
-            }
-            .pdf-slider {
-                display: flex;
-                transition: transform 0.5s ease-in-out;
-            }
-            .pdf-page {
-                min-width: 100%; /* Each image takes up the full width of the container */
-                flex-shrink: 0;
-                height: auto;
-                object-fit: contain; /* Ensures the entire image is visible within the container */
-            }
-            .nav-button {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background-color: rgba(0, 0, 0, 0.5);
-                color: white;
-                border: none;
-                padding: 10px;
-                cursor: pointer;
-                z-index: 10;
-                opacity: 0.8;
-                transition: opacity 0.2s ease-in-out;
-                border-radius: 5px;
-            }
-            .nav-button:hover {
-                opacity: 1;
-            }
-            .prev {
-                left: 10px;
-            }
-            .next {
-                right: 10px;
-            }
-        </style>
-    <body class="bg-gray-900 text-gray-200">
-        <!-- Header -->
-        <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
-            <div class="container mx-auto px-6 flex justify-between items-center text-white">
-                <a href="/index.html#hero" class="text-2xl font-bold emerald-text flex items-center">
-    				<img src="/아쿠아홀딩스 새 로고(배경 투명).png" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
-    			</a>
-                <nav class="hidden md:flex space-x-6 items-center">
-                    <a href="/index.html#proof" class="hover:emerald-text transition">투자 실체</a>
-                    <a href="/index.html#difference" class="hover:emerald-text transition">차별점</a>
-                    <a href="/index.html#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
-                    <a href="/index.html#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
-                    <div id="pc-data-room-container" class="relative">
-                        <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
-                            <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
-                                <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
-                                <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
-                                <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
-                                <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
-                                <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
-                        </div>
-                    </div>
-                    <a href="/index.html#faq" class="hover:emerald-text transition">FAQ</a>
-                    <a href="/index.html#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
-                <a href="/index.html#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
-                <a href="/index.html#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
-                <a href="/index.html#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
-                <a href="/index.html#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
-                <div id="data-room-mobile-toggle" class="relative">
-                    <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
-                        Data room
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
-                        <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
-                        <a href="/dataroom/gallery.html" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
-                        <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
-                        <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공동투자 제안서</a>
-                        <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+        .pdf-slider-wrapper {
+            overflow: hidden; /* 슬라이더가 이 영역 밖으로 나가지 않도록 함 */
+            border-radius: 0.75rem;
+        }
+
+        .pdf-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* 부드러운 전환 효과 */
+        }
+
+        .pdf-page {
+            width: 100%;
+            flex-shrink: 0; /* 페이지 이미지가 줄어들지 않도록 함 */
+            object-fit: contain; /* 이미지 비율을 유지하며 컨테이너에 맞춤 */
+            height: auto;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* 비활성화된 버튼 스타일 */
+        .nav-button:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .next {
+            right: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+    <!-- Header -->
+    <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
+        <div class="container mx-auto px-6 flex justify-between items-center text-white">
+            <a href="/index.html#hero" class="text-2xl font-bold emerald-text flex items-center">
+                <img src="/아쿠아홀딩스 새 로고(배경 투명).png" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
+            </a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="/index.html#proof" class="hover:emerald-text transition">투자 실체</a>
+                <a href="/index.html#difference" class="hover:emerald-text transition">차별점</a>
+                <a href="/index.html#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
+                <a href="/index.html#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
+                <div id="pc-data-room-container" class="relative">
+                    <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+                            <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                            <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                            <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+                            <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
+                            <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
                     </div>
                 </div>
-                <a href="/index.html#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
-                <a href="/index.html#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+                <a href="/index.html#faq" class="hover:emerald-text transition">FAQ</a>
+                <a href="/index.html#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <a href="/index.html#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+            <a href="/index.html#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+            <a href="/index.html#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+            <a href="/index.html#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+            <div id="data-room-mobile-toggle" class="relative">
+                <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                    Data room
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                    <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                    <a href="/dataroom/gallery.html" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                    <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                    <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공동투자 제안서</a>
+                    <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                </div>
             </div>
-        </header>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                lucide.createIcons();
-                
-                const mobileMenuButton = document.getElementById('mobile-menu-button');
-                const mobileMenu = document.getElementById('mobile-menu');
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
-                const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
-                const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
-                
-                dataRoomMobileToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    dataRoomMobileSubmenu.classList.toggle('hidden');
-                    dataRoomMobileIcon.classList.toggle('rotate-180');
-                });
-                
-                const pcDataRoomButton = document.querySelector('#pc-data-room-button');
-                const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
-                
-                pcDataRoomButton.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    pcDataRoomSubmenu.classList.toggle('hidden');
-                });
-                
-                document.addEventListener('click', (e) => {
-                    if (!pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
-                        pcDataRoomSubmenu.classList.add('hidden');
-                    }
-                });
-            });
+            <a href="/index.html#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+            <a href="/index.html#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+        </div>
+    </header>
 
-            document.addEventListener('DOMContentLoaded', () => {
-                const sliderContainer = document.getElementById('pdf-container');
-                const slider = document.getElementById('pdf-slider');
-                const slides = document.querySelectorAll('.pdf-page');
-                const prevButton = document.getElementById('prev-button');
-                const nextButton = document.getElementById('next-button');
-                const pageCounter = document.getElementById('page-counter');
-                const totalPages = slides.length;
-                let currentPage = 0;
-
-                // Set container size with internal variables (not exposed to user)
-                const containerWidth = '800px';
-                const containerHeight = '600px';
-                sliderContainer.style.maxWidth = containerWidth;
-                sliderContainer.style.height = containerHeight;
-
-                const updateSlider = () => {
-                    const offset = -currentPage * 100;
-                    slider.style.transform = `translateX(${offset}%)`;
-                    pageCounter.textContent = `${currentPage + 1} / ${totalPages}`;
-                };
-
-                const resizeObserver = new ResizeObserver(entries => {
-                    for (let entry of entries) {
-                        if (entry.target === sliderContainer) {
-                            // Re-calculate the transform if the container size changes
-                            updateSlider();
-                        }
-                    }
-                });
-                resizeObserver.observe(sliderContainer);
-
-                prevButton.addEventListener('click', () => {
-                    currentPage = (currentPage - 1 + totalPages) % totalPages;
-                    updateSlider();
-                });
-
-                nextButton.addEventListener('click', () => {
-                    currentPage = (currentPage + 1) % totalPages;
-                    updateSlider();
-                });
-
-                updateSlider();
-            });
-        </script>
-        
-        <div id="pdf-container" class="pdf-container mx-auto mt-24">
+    <main class="pt-24 pb-12">
+        <div id="pdf-container" class="pdf-container mx-auto">
             <div class="relative">
-                <div id="pdf-slider" class="pdf-slider">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/01.png" alt="페이지 01" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/02.png" alt="페이지 02" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/03.png" alt="페이지 03" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/04.png" alt="페이지 04" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/05.png" alt="페이지 05" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/06.png" alt="페이지 06" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/07.png" alt="페이지 07" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/08.png" alt="페이지 08" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/09.png" alt="페이지 09" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/10.png" alt="페이지 10" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/11.png" alt="페이지 11" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/brochure/12.png" alt="페이지 12" class="pdf-page">
-
-                    <!--
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_1.png" alt="PDF 페이지 1" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_2.png" alt="PDF 페이지 2" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_3.png" alt="PDF 페이지 3" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_4.png" alt="PDF 페이지 4" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_5.png" alt="PDF 페이지 5" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_6.png" alt="PDF 페이지 6" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_7.png" alt="PDF 페이지 7" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_8.png" alt="PDF 페이지 8" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_9.png" alt="PDF 페이지 9" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_10.png" alt="PDF 페이지 10" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_11.png" alt="PDF 페이지 11" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_12.png" alt="PDF 페이지 12" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_13.png" alt="PDF 페이지 13" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_14.png" alt="PDF 페이지 14" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_15.png" alt="PDF 페이지 15" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_16.png" alt="PDF 페이지 16" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_17.png" alt="PDF 페이지 17" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_18.png" alt="PDF 페이지 18" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_19.png" alt="PDF 페이지 19" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_20.png" alt="PDF 페이지 20" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_21.png" alt="PDF 페이지 21" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_22.png" alt="PDF 페이지 22" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_23.png" alt="PDF 페이지 23" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_24.png" alt="PDF 페이지 24" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_25.png" alt="PDF 페이지 25" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_27.png" alt="PDF 페이지 27" class="pdf-page">
-                    <img src="https://aquaholdings.co.kr/dataroom/intropage/intro-aqua_28.png" alt="PDF 페이지 28" class="pdf-page">
-                    -->
+                <div class="pdf-slider-wrapper">
+                    <div id="pdf-slider" class="pdf-slider">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/01.png" alt="페이지 01" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/02.png" alt="페이지 02" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/03.png" alt="페이지 03" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/04.png" alt="페이지 04" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/05.png" alt="페이지 05" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/06.png" alt="페이지 06" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/07.png" alt="페이지 07" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/08.png" alt="페이지 08" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/09.png" alt="페이지 09" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/10.png" alt="페이지 10" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/11.png" alt="페이지 11" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                        <img src="https://aquaholdings.co.kr/dataroom/Brochure/12.png" alt="페이지 12" class="pdf-page" onerror="this.onerror=null;this.src='https://placehold.co/900x1273/e2e8f0/4a5568?text=Image+Not+Found';">
+                    </div>
                 </div>
                 <button id="prev-button" class="nav-button prev">&#10094;</button>
                 <button id="next-button" class="nav-button next">&#10095;</button>
@@ -265,12 +167,101 @@
                 <span id="page-counter" class="text-sm text-gray-400">1 / 12</span>
             </div>
         </div>
+    </main>
+
     <footer class="bg-gray-900 py-8">
         <div class="container mx-auto px-6 text-center text-gray-500">
             <p class="">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
-            <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="text-sm mt-2 text-center inline-block bg-yellow-500 text-white px-2 py-0.5 rounded-lg hover:bg-emerald-600 transition duration-300 shadow-lg"> 카카오 CS 채널</a></p>
+            <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="text-sm mt-2 text-center inline-block bg-yellow-400 text-black px-2 py-0.5 rounded-lg hover:bg-yellow-500 transition duration-300 shadow-lg"> 카카오 CS 채널</a></p>
             <p class="mt-4 text-sm">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
         </div>
     </footer>
-    </body>
+
+    <script>
+        // DOM 로드 후 스크립트 실행
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- 헤더 메뉴 관련 스크립트 ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
+            const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
+            const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
+            
+            dataRoomMobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dataRoomMobileSubmenu.classList.toggle('hidden');
+                dataRoomMobileIcon.classList.toggle('rotate-180');
+            });
+            
+            const pcDataRoomButton = document.querySelector('#pc-data-room-button');
+            const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
+            
+            pcDataRoomButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                pcDataRoomSubmenu.classList.toggle('hidden');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
+                    pcDataRoomSubmenu.classList.add('hidden');
+                }
+            });
+
+            // --- PDF 뷰어 슬라이더 관련 스크립트 ---
+            const slider = document.getElementById('pdf-slider');
+            // 슬라이더가 없는 페이지에서 오류가 나지 않도록 null 체크
+            if (slider) {
+                const prevButton = document.getElementById('prev-button');
+                const nextButton = document.getElementById('next-button');
+                const pageCounter = document.getElementById('page-counter');
+                const slides = document.querySelectorAll('.pdf-page');
+                const totalPages = slides.length;
+                let currentPage = 0;
+
+                const showPage = (pageIndex) => {
+                    // 슬라이더 위치를 현재 페이지에 맞게 이동
+                    slider.style.transform = `translateX(-${pageIndex * 100}%)`;
+                    // 페이지 카운터 텍스트 업데이트
+                    pageCounter.textContent = `${pageIndex + 1} / ${totalPages}`;
+                    
+                    // 첫 페이지일 경우 '이전' 버튼 비활성화
+                    prevButton.disabled = pageIndex === 0;
+                    // 마지막 페이지일 경우 '다음' 버튼 비활성화
+                    nextButton.disabled = pageIndex === totalPages - 1;
+                };
+
+                prevButton.addEventListener('click', () => {
+                    if (currentPage > 0) {
+                        currentPage--;
+                        showPage(currentPage);
+                    }
+                });
+
+                nextButton.addEventListener('click', () => {
+                    if (currentPage < totalPages - 1) {
+                        currentPage++;
+                        showPage(currentPage);
+                    }
+                });
+
+                // 키보드 화살표 키로 페이지 넘기기
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'ArrowLeft') {
+                        prevButton.click();
+                    } else if (event.key === 'ArrowRight') {
+                        nextButton.click();
+                    }
+                });
+                
+                // 초기 페이지 로드
+                showPage(currentPage);
+            }
+        });
+    </script>
+</body>
 </html>
+
