@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
+    <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아쿠아홀딩스 핵심 자산 포트폴리오</title>
+
+	<title>아쿠아홀딩스 핵심 자산 포트폴리오</title>
+	<meta name="description" content="아쿠아홀딩스는 21세기수산, 신성영어조합, 영주민영 경매/도매시장 및 제일가 대형 마트 등과 함께 실물자산 기반의 거대 인프라로 지속가능한 미래를 만들어갑니다.">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="생산부터 유통, 판매까지. 아쿠아홀딩스는 독보적인 가치 사슬을 통해 지속 가능한 성장을 만들어갑니다.">
+	<meta property="og:description" content="치패납품, 고부가가치 수산물 생산, 국내 5대 민영 경매장, 대형 식자재 유통 허브">
+	<meta property="og:image" content="https://r2.flowith.net/files/o/1754497556038-korean_fishing_trawler_sunrise_cinematic_realism_index_0@1024x1024.png"> <meta property="og:url" content="https://aquaholding.co.kr">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <style>
         /* 기본 스타일 초기화 및 폰트 설정 */
         body {
@@ -24,19 +42,20 @@
 
         /* 전체를 감싸는 컨테이너 */
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 0 180px;
         }
 
         /* 헤더 섹션 스타일 */
         .header {
             text-align: center;
+            margin-top: 100px;
             margin-bottom: 60px;
         }
 
         .header h1 {
-            font-size: 3.2rem; /* 제목 글씨 크기 강조 */
+            font-size: 3.0rem; /* 제목 글씨 크기 강조 */
             margin-bottom: 15px;
             font-weight: 800;
             /* 더욱 선명하고 화려한 그라데이션 텍스트 효과 */
@@ -57,8 +76,8 @@
         /* 포트폴리오 카드 그리드 레이아웃 */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 45px;
         }
 
         /* 개별 카드 스타일 */
@@ -88,19 +107,19 @@
 
         .card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 0 25px rgba(129, 212, 250, 0.5); /* 마우스 올리면 네온 빛 효과 */
+            box-shadow: 0 0 25px rgba(129, 212, 250, 0.5);
         }
 
         /* 카드 이미지 스타일 */
         .card-image {
             width: 100%;
             height: 220px;
-            object-fit: cover; /* 이미지가 비율을 유지하며 카드 상단을 채움 */
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
         .card:hover .card-image {
-            transform: scale(1.05); /* 마우스 올리면 이미지가 미세하게 확대 */
+            transform: scale(1.05);
         }
         
         /* 카드 콘텐츠 영역 스타일 */
@@ -123,7 +142,7 @@
             font-size: 1.05rem;
             color: #bdbdbd;
             margin: 0;
-            flex-grow: 1; /* p 태그가 남은 공간을 채워 버튼을 하단에 고정 */
+            flex-grow: 1;
         }
         
         /* '자세히 보기' 버튼 스타일 */
@@ -151,130 +170,257 @@
             }
         }
 
+
         /* 푸터 스타일 */
-        .footer {
+/*        .footer {
             text-align: center;
             padding: 40px 20px;
             margin-top: 60px;
             color: #757575;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+*/      
 
         /* 모바일 화면 대응 (768px 이하) */
         @media (max-width: 768px) {
             .container {
-                padding: 40px 15px;
+                padding: 0px 60px;
             }
             .header h1 {
-                font-size: 2.2rem; /* 모바일 제목 크기 조정 */
+                font-size: 2.2rem;
             }
             .header p {
-                font-size: 1.1rem; /* 모바일 부제목 크기 조정 */
+                font-size: 1.1rem;
             }
             .portfolio-grid {
-                gap: 25px; /* 카드 간격 조정 */
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
             .card-content {
-                padding: 20px; /* 카드 내부 여백 조정 */
+                padding: 20px;
             }
             .card-content h3 {
-                font-size: 1.4rem; /* 카드 제목 폰트 크기 조정 */
+                font-size: 1.4rem;
             }
             .card-content p {
-                font-size: 1rem; /* 카드 설명 폰트 크기 조정 */
+                font-size: 1rem;
             }
+        }
+        .emerald-text { color: #10B981; }
+        .emerald-bg { background-color: #10B981; }
+        .emerald-border { border-color: #10B981; }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #9CA3AF;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+        }
+        .tab-button.active {
+            background-color: #10B981;
+            color: #FFFFFF;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .testimonial-slide {
+            transition: transform 0.5s ease-in-out;
+        }
+        .gallery-thumbnail {
+            transition: border-color 0.2s ease-in-out;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-200">
+    <!-- Header. 메뉴부 -->
+    <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
+        <div class="container mx-auto px-6 flex justify-between items-center text-white">
+            <a href="/index.html#hero" class="text-2xl font-bold emerald-text flex items-center">
+				<img src="/아쿠아홀딩스 새 로고(배경 투명).png" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
+			</a>
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="/index.html#proof" class="hover:emerald-text transition">투자 실체</a>
+                    <a href="/index.html#difference" class="hover:emerald-text transition">차별점</a>
+                    <a href="/index.html#trust-safety-center" class="hover:emerald-text transition">신뢰와 안전</a>
+                    <a href="/index.html#trust-system" class="hover:emerald-text transition">신뢰 시스템</a>
+                    <div id="pc-data-room-container" class="relative">
+                        <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
+	                            <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+	                            <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                                <!--
+                                <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+                                -->
+                                <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공식 브로슈어</a>
+	                            <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                        </div>
+                    </div>
+                    <a href="/index.html#faq" class="hover:emerald-text transition">FAQ</a>
+                    <a href="/index.html#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+                <a href="/index.html#proof" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+                <a href="/index.html#difference" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+                <a href="/index.html#trust-safety-center" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+                <a href="/index.html#trust-system" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+                <div id="data-room-mobile-toggle" class="relative">
+                    <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                        Data room
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                        <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                        <a href="/dataroom/gallery.html" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                        <!--
+                        <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                        -->
+                        <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공식 브로슈어</a>
+                        <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                    </div>
+                </div>
+                <a href="/index.html#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+                <a href="/index.html#final-cta" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+        </div>
+    </header>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pcDataRoomButton = document.querySelector('#pc-data-room-button');
+            const pcDataRoomSubmenu = document.querySelector('#pc-data-room-submenu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const dataRoomMobileToggle = document.getElementById('data-room-mobile-toggle');
+            const dataRoomMobileSubmenu = document.getElementById('data-room-mobile-submenu');
+            const dataRoomMobileIcon = document.querySelector('.data-room-mobile-icon');
 
-    <div class="container">
-        <!-- 페이지 헤더 -->
-        <header class="header">
-            <h1>아쿠아가 준비한 수백억원 자산을 갤러리에서 확인하세요.</h1>
-            <p>생산부터 유통, 판매까지. 아쿠아홀딩스는 독보적인 가치 사슬을 통해 지속 가능한 성장을 만들어갑니다.</p>
-        </header>
-
-        <!-- 자산 포트폴리오 그리드 -->
-        <main class="portfolio-grid">
+            pcDataRoomButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                pcDataRoomSubmenu.classList.toggle('hidden');
+            });
             
-            <!-- 카드 1: 21세기수산 -->
-            <a href="https://photos.app.goo.gl/En18YrcXJEfRxksg9" target="_blank" rel="noopener noreferrer" class="card-wrapper">
-                <div class="card">
-                    <img src="https://i.imgur.com/pqPgkDZ.png" alt="21세기수산 양식장" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a237e/e3f2fd?text=Image+Not+Found';">
-                    <div class="card-content">
-                        <h3>완도 치패 납품 1위 기업</h3>
-                        <p>국내 최대 규모(총 5,500평)의 전복 치패 양식장을 운영하며 안정적인 생산 기반을 책임집니다. (21세기수산)</p>
-                        <div class="details-button">실물 앨범 바로가기 ➔</div>
+            document.addEventListener('click', (e) => {
+                if (!pcDataRoomButton.contains(e.target) && !pcDataRoomSubmenu.contains(e.target)) {
+                    pcDataRoomSubmenu.classList.add('hidden');
+                }
+            });
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            dataRoomMobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dataRoomMobileSubmenu.classList.toggle('hidden');
+                dataRoomMobileIcon.classList.toggle('rotate-180');
+            });
+        });
+    </script>
+    <main>
+        <div class="container">
+            <!-- 페이지 헤더 -->
+            <header class="header">
+                <h1>아쿠아가 준비한 수백억원 자산을 갤러리에서 확인하세요.</h1>
+                <p>생산부터 유통, 판매까지. 아쿠아홀딩스는 독보적인 가치 사슬을 통해 지속 가능한 성장을 만들어갑니다.</p>
+            </header>
+
+            <!-- 자산 포트폴리오 그리드 -->
+            <main class="portfolio-grid">
+                
+                <!-- 카드 1: 21세기수산 -->
+                <a href="https://photos.app.goo.gl/En18YrcXJEfRxksg9" target="_blank" rel="noopener noreferrer" class="card-wrapper">
+                    <div class="card">
+                        <img src="https://i.imgur.com/pqPgkDZ.png" alt="21세기수산 양식장" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a237e/e3f2fd?text=Image+Not+Found';">
+                        <div class="card-content">
+                            <h3>완도 치패 납품 1위 기업</h3>
+                            <p>국내 최대 규모(총 5,500평)의 전복 치패 양식장을 운영하며 안정적인 생산 기반을 책임집니다. (21세기수산)</p>
+                            <div class="details-button">실물 앨범 바로가기 ➔</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <!-- 카드 2: 신성영어조합 -->
-            <a href="https://photos.app.goo.gl/Uu3Ezopz1FbSxt3G9" target="_blank" rel="noopener noreferrer" class="card-wrapper">
-                <div class="card">
-                    <img src="https://i.imgur.com/ADiqZGq.png" alt="신성영어조합 공동양식장" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121021/81d4fa?text=Image+Not+Found';">
-                    <div class="card-content">
-                        <h3>아쿠아 공동양식장</h3>
-                        <p>총 36,000평의 해양 복합 양식 인프라를 통해 다양한 고부가가치 수산물을 생산합니다. (신성영어조합)</p>
-                        <div class="details-button">실물 앨범 바로가기 ➔</div>
+                <!-- 카드 2: 신성영어조합 -->
+                <a href="https://photos.app.goo.gl/Uu3Ezopz1FbSxt3G9" target="_blank" rel="noopener noreferrer" class="card-wrapper">
+                    <div class="card">
+                        <img src="https://i.imgur.com/ADiqZGq.png" alt="신성영어조합 공동양식장" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121021/81d4fa?text=Image+Not+Found';">
+                        <div class="card-content">
+                            <h3>아쿠아 공동양식장</h3>
+                            <p>총 36,000평의 해양 복합 양식 인프라를 통해 다양한 고부가가치 수산물을 생산합니다. (신성영어조합)</p>
+                            <div class="details-button">실물 앨범 바로가기 ➔</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <!-- 카드 3: 영주 민영 농산물 도매시장 -->
-            <a href="https://photos.app.goo.gl/1iGxTcZE491B2R9x5" target="_blank" rel="noopener noreferrer" class="card-wrapper">
-                <div class="card">
-                    <img src="https://i.imgur.com/VmZ5Hcv.png" alt="영주 민영 농산물 도매시장" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a237e/ce93d8?text=Image+Not+Found';">
-                    <div class="card-content">
-                        <h3>국내 5대 민영 경매장</h3>
-                        <p>400평 규모의 저온/냉동 창고를 통해 전국으로 뻗어나가는 유통의 허브 역할을 수행합니다. (영주 민영 농산물 도매시장)</p>
-                        <div class="details-button">실물 앨범 바로가기 ➔</div>
+                <!-- 카드 3: 영주 민영 농산물 도매시장 -->
+                <a href="https://photos.app.goo.gl/1iGxTcZE491B2R9x5" target="_blank" rel="noopener noreferrer" class="card-wrapper">
+                    <div class="card">
+                        <img src="https://i.imgur.com/VmZ5Hcv.png" alt="영주 민영 농산물 도매시장" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a237e/ce93d8?text=Image+Not+Found';">
+                        <div class="card-content">
+                            <h3>국내 5대 민영 경매장</h3>
+                            <p>400평 규모의 저온/냉동 창고를 통해 전국으로 뻗어나가는 유통의 허브 역할을 수행합니다. (영주 민영 농산물 도매시장)</p>
+                            <div class="details-button">실물 앨범 바로가기 ➔</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <!-- 카드 4: 하남 제일가 -->
-            <a href="https://photos.app.goo.gl/kNsEYtXoZpHmjyh67" target="_blank" rel="noopener noreferrer" class="card-wrapper">
-                <div class="card">
-                    <img src="https://i.imgur.com/zypjKHl.png" alt="하남 제일가 식자재마트" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121021/f48fb1?text=Image+Not+Found';">
-                    <div class="card-content">
-                        <h3>대형 식자재 유통 허브</h3>
-                        <p>직영 대형마트를 통해 소비자에게 가장 신선한 제품을 공급하며 안정적인 현금 흐름을 창출합니다. (하남 제일가)</p>
-                        <div class="details-button">실물 앨범 바로가기 ➔</div>
+                <!-- 카드 4: 하남 제일가 -->
+                <a href="https://photos.app.goo.gl/kNsEYtXoZpHmjyh67" target="_blank" rel="noopener noreferrer" class="card-wrapper">
+                    <div class="card">
+                        <img src="https://i.imgur.com/zypjKHl.png" alt="하남 제일가 식자재마트" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121021/f48fb1?text=Image+Not+Found';">
+                        <div class="card-content">
+                            <h3>대형 식자재 유통 허브</h3>
+                            <p>직영 대형마트를 통해 소비자에게 가장 신선한 제품을 공급하며 안정적인 현금 흐름을 창출합니다. (하남 제일가)</p>
+                            <div class="details-button">실물 앨범 바로가기 ➔</div>
+                        </div>
                     </div>
-                </div>
-            </a>
-            
-            <!-- 카드 5: 공식 홈페이지 -->
-            <a href="http://www.aquaholdings.co.kr" target="_blank" rel="noopener noreferrer" class="card-wrapper">
-                <div class="card">
-                    <div class="card-content">
-                        <h3>공식 홈페이지</h3>
-                        <p>아쿠아홀딩스의 비전과 최신 소식을 가장 먼저 확인해 보세요.</p>
-                        <div class="details-button">바로가기 ➔</div>
+                </a>
+                
+                <!-- 카드 5: 공식 홈페이지 -->
+                <a href="http://www.aquaholdings.co.kr" target="_blank" rel="noopener noreferrer" class="card-wrapper">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>공식 홈페이지</h3>
+                            <p>아쿠아홀딩스의 비전과 최신 소식을 가장 먼저 확인해 보세요.</p>
+                            <div class="details-button">바로가기 ➔</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <!-- 카드 6: 카카오톡 단톡방 -->
-            <a href="https://open.kakao.com/o/gexkXLGh" target="_blank" rel="noopener noreferrer" class="card-wrapper">
-                <div class="card">
-                    <div class="card-content">
-                        <h3>카카오톡 단톡방</h3>
-                        <p>실시간으로 소통하며 유용한 투자 정보를 공유하는 공간입니다.</p>
-                        <div class="details-button">참여하기 ➔</div>
+                <!-- 카드 6: 카카오톡 단톡방 -->
+                <a href="https://open.kakao.com/o/gexkXLGh" target="_blank" rel="noopener noreferrer" class="card-wrapper">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>카카오톡 단톡방</h3>
+                            <p>실시간으로 소통하며 유용한 투자 정보를 공유하는 공간입니다.</p>
+                            <div class="details-button">참여하기 ➔</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </main>
 
-        </main>
-
-        <!-- 페이지 푸터 -->
-        <footer class="footer">
-            <p>&copy; 2025 아쿠아홀딩스. All Rights Reserved.</p>
-        </footer>
-    </div>
-
+            <!-- 페이지 푸터 -->
+	        <footer class="bg-gray-900 py-8">
+	            <div class="container mx-auto px-6 text-center text-gray-500">
+	                <p class="">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
+	                <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="text-sm mt-2 text-center inline-block bg-yellow-500 text-white px-2 py-0.5 rounded-lg hover:bg-emerald-600 transition duration-300 shadow-lg"> 카카오 CS 채널</a></p>
+	                <p class="mt-4 text-sm">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
+	            </div>
+	        </footer>
+        </div>
+    </main>
 </body>
 </html>
