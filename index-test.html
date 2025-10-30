@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="ko" class="scroll-smooth">
     <head>
-        <link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
+        <link rel="icon" href="/aqua-icon-64x64-300ppi.png">
+		<link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
         <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,13 @@
 	    <meta property="og:image" content="https://r2.flowith.net/files/o/1754497556038-korean_fishing_trawler_sunrise_cinematic_realism_index_0@1024x1024.png"> <meta property="og:url" content="https://aquaholding.co.kr">
 
 		<script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -79,12 +83,17 @@
                     <div id="pc-data-room-container" class="relative">
                         <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
 	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
-	                            <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
-	                            <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
-	                            <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+	                            <a href="/dataroom/pawn.html" class="block px-4 py-2 hover:bg-gray-700">1. 담보 안내</a>
+                                <a href="/dataroom/smartfarm.html" class="block px-4 py-2 hover:bg-gray-700">2. 신규사업 #1 스마트팜</a>
+                                <a href="/dataroom/quarry_development.html" class="block px-4 py-2 hover:bg-gray-700">2. 신규사업 #2 석산 개발 사업</a>
+                                <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                                <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                                <!--
+                                    <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+                                -->
                                 <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
-	                            <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
-                        </div>
+                                <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                            </div>
                     </div>
                     <a href="#faq" class="hover:emerald-text transition">FAQ</a>
                     <a href="#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
@@ -104,8 +113,13 @@
                         </svg>
                     </button>
                     <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                        <a href="/dataroom/pawn.html" class="block text-center py-2 hover:bg-gray-600">1. 담보 안내</a>
+                        <a href="/dataroom/smartfarm.html" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #1 스마트팜</a>
+                        <a href="/dataroom/quarry_development.html" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #2 석산 개발 사업</a>
                         <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
-                        <a href="/dataroom/gallery.html" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                        <!--
+                            <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                            -->
                         <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
                         <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공동투자 제안서</a>
                         <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
@@ -860,4 +874,3 @@
         </footer>
     </body>
 </html>
-<!DOCTYPE html>
