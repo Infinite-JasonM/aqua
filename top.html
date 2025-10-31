@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>상단 메뉴 | 아쿠아홀딩스</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 폰트 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS 로드 (최신 CDN 사용) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 커스텀 스타일 정의 -->
+    <style>
+        /* Noto Sans KR 폰트 적용 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        /* 에메랄드 색상 텍스트 정의 */
+        .emerald-text {
+            color: #10b981; /* Tailwind emerald-500 */
+        }
+        /* 이 프레임 자체는 스크롤되지 않도록 height를 꽉 채웁니다. */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        /* 프레임 내비게이션 바 스타일 */
+        #header-nav {
+            background-color: rgba(17, 24, 39, 0.9); /* gray-900/90 */
+            width: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+    <header id="header-nav" class="transition-all duration-300 py-2">
+        <div class="container mx-auto px-6 flex justify-between items-center text-white h-full">
+            
+            <!-- 로고: 클릭 시 메인 프레임에 main.html을 로드하도록 target 설정 -->
+            <a href="main.html" target="main_frame" class="text-2xl font-bold emerald-text flex items-center">
+                <!-- 로컬 이미지 대신 플레이스홀더 사용 -->
+                <img src="https://aquaholdings.co.kr/아쿠아홀딩스 새 로고(배경 투명).png?text=Logo" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
+            </a>
+
+            <!-- PC 메뉴 -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <!-- 모든 앵커 태그에 target="main_frame" 속성을 추가하여 본문 프레임에 내용을 로드합니다. -->
+                <a href="content1.html" target="main_frame" class="hover:emerald-text transition">투자 실체</a>
+                <a href="content2.html" target="main_frame" class="hover:emerald-text transition">차별점</a>
+                <a href="content3.html" target="main_frame" class="hover:emerald-text transition">신뢰와 안전</a>
+                <a href="content4.html" target="main_frame" class="hover:emerald-text transition">신뢰 시스템</a>
+                
+                <!-- Data room 드롭다운 -->
+                <div id="pc-data-room-container" class="relative">
+                    <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+                    <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-48 right-0">
+                        <!-- 서브메뉴 링크에도 target="main_frame" 적용 -->
+                        <a href="dataroom/pawn.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">1. 담보 안내</a>
+                        <a href="dataroom/smartfarm.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">2. 신규사업 #1 스마트팜</a>
+                        <a href="dataroom/quarry_development.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">2. 신규사업 #2 석산 개발 사업</a>
+                        <a href="dataroom/newsall.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                        <a href="dataroom/gallery.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                        <a href="dataroom/intro.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
+                        <a href="dataroom/msg-1.html" target="main_frame" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                    </div>
+                </div>
+                
+                <a href="content5.html" target="main_frame" class="hover:emerald-text transition">FAQ</a>
+                <a href="contact.html" target="main_frame" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+            </nav>
+
+            <!-- 모바일 메뉴 버튼 -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </div>
+        
+        <!-- 모바일 메뉴 드롭다운 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-white">
+            <a href="content1.html" target="main_frame" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+            <a href="content2.html" target="main_frame" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+            <a href="content3.html" target="main_frame" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+            <a href="content4.html" target="main_frame" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+            
+            <!-- Data room 모바일 토글 -->
+            <div id="data-room-mobile-toggle" class="relative">
+                <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                    Data room
+                    <svg id="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                    <!-- 서브메뉴 링크에도 target="main_frame" 적용 -->
+                    <a href="dataroom/pawn.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">1. 담보 안내</a>
+                    <a href="dataroom/smartfarm.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #1 스마트팜</a>
+                    <a href="dataroom/quarry_development.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #2 석산 개발 사업</a>
+                    <a href="dataroom/newsall.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                    <a href="dataroom/gallery.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
+                    <a href="dataroom/calculator.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                    <a href="dataroom/intro.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">공동투자 제안서</a>
+                    <a href="dataroom/msg-1.html" target="main_frame" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                </div>
+            </div>
+            
+            <a href="content5.html" target="main_frame" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+            <a href="contact.html" target="main_frame" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+        </div>
+    </header>
+
+    <script>
+        // Data room 드롭다운 메뉴 (PC 버전) 토글 로직
+        const pcButton = document.getElementById('pc-data-room-button');
+        const pcSubmenu = document.getElementById('pc-data-room-submenu');
+        
+        // 마우스를 올렸을 때 드롭다운 표시
+        pcButton.parentElement.addEventListener('mouseenter', () => {
+            pcSubmenu.classList.remove('hidden');
+        });
+        
+        // 마우스를 뗐을 때 드롭다운 숨김
+        pcButton.parentElement.addEventListener('mouseleave', () => {
+            pcSubmenu.classList.add('hidden');
+        });
+
+        // 모바일 메뉴 토글 로직
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 모바일 Data room 드롭다운 토글 로직
+        const mobileDataRoomButton = document.getElementById('mobile-data-room-button');
+        const mobileDataRoomSubmenu = document.getElementById('data-room-mobile-submenu');
+        const mobileDropdownIcon = document.getElementById('mobile-dropdown-icon');
+
+        mobileDataRoomButton.addEventListener('click', () => {
+            mobileDataRoomSubmenu.classList.toggle('hidden');
+            // 드롭다운 아이콘 회전
+            mobileDropdownIcon.classList.toggle('rotate-180');
+        });
+        
+        // 모든 메뉴 링크에 target="main_frame"이 적용되었는지 확인 (이중 체크)
+        document.querySelectorAll('a').forEach(link => {
+            if (!link.hasAttribute('target')) {
+                // target 속성이 없는 앵커 태그에만 target="main_frame"을 추가
+                link.setAttribute('target', 'main_frame');
+            }
+        });
+    </script>
+</body>
+</html>

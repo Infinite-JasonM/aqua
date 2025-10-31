@@ -1,10 +1,20 @@
 <!doctype html>
 <html lang="ko" class="scroll-smooth">
     <head>
+        <link rel="icon" href="/aqua-icon-64x64-300ppi.png">
+		<link rel="shortcut icon" sizes="64x64" type="image/png" href="/aqua-icon-64x64-300ppi.png">
+        <link rel="shortcut icon" sizes="128x128" type="image/x-icon" href="/aqua-favicon-128x128.ico">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>아쿠아홀딩스 - 실물 자산 공동투자 플랫폼</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        
+		<title>아쿠아홀딩스 - 실물 자산 공동투자 플랫폼</title>
+		<meta name="description" content="아쿠아홀딩스는 21세기수산, 신성영어조합, 영주민영 경매/도매시장 및 제일가 대형 마트 등과 함께 실물자산 기반의 거대 인프라로 지속가능한 미래를 만들어갑니다.">
+	    <meta name="robots" content="index, follow">
+	    <meta property="og:title" content="아쿠아홀딩스 - 현실적인 농/수산물 생태계 기반의 공동투자 플랫폼">
+	    <meta property="og:description" content="실물 자산기반의 투자 플랫폼으로 더욱 안정적인 공동투자의 새로운 기준을 제시합니다.">
+	    <meta property="og:image" content="https://r2.flowith.net/files/o/1754497556038-korean_fishing_trawler_sunrise_cinematic_realism_index_0@1024x1024.png"> <meta property="og:url" content="https://aquaholding.co.kr">
+
+		<script src="https://cdn.tailwindcss.com"></script>
         <script src="https://unpkg.com/lucide@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
@@ -62,7 +72,9 @@
         <!-- Header -->
         <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2">
             <div class="container mx-auto px-6 flex justify-between items-center text-white">
-                <a href="#hero" class="text-2xl font-bold emerald-text">아쿠아홀딩스</a>
+                <a href="#hero" class="text-2xl font-bold emerald-text flex items-center">
+                    <img src="/아쿠아홀딩스 새 로고(배경 투명).png" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
+				</a>
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="#proof" class="hover:emerald-text transition">투자 실체</a>
                     <a href="#difference" class="hover:emerald-text transition">차별점</a>
@@ -71,11 +83,17 @@
                     <div id="pc-data-room-container" class="relative">
                         <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
 	                        <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-40">
-	                            <a href="./dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
-	                            <a href="./dataroom/gallery" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
-	                            <a href="./dataroom/calculator" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
-	                            <a href="./dataroom/msg-1" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
-                        </div>
+	                            <a href="/dataroom/pawn.html" class="block px-4 py-2 hover:bg-gray-700">1. 담보 안내</a>
+                                <a href="/dataroom/smartfarm.html" class="block px-4 py-2 hover:bg-gray-700">2. 신규사업 #1 스마트팜</a>
+                                <a href="/dataroom/quarry_development.html" class="block px-4 py-2 hover:bg-gray-700">2. 신규사업 #2 석산 개발 사업</a>
+                                <a href="/dataroom/newsall.html" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                                <a href="/dataroom/gallery.html" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                                <!--
+                                    <a href="/dataroom/calculator.html" class="block px-4 py-2 hover:bg-gray-700">수익률 계산기</a>
+                                -->
+                                <a href="/dataroom/intro.html" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
+                                <a href="/dataroom/msg-1.html" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                            </div>
                     </div>
                     <a href="#faq" class="hover:emerald-text transition">FAQ</a>
                     <a href="#final-cta" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
@@ -95,10 +113,16 @@
                         </svg>
                     </button>
                     <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
-                        <a href="./dataroom/newsall" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
-                        <a href="./dataroom/gallery" class="block text-center py-2 hover:bg-gray-600">갤러리</a>
-                        <a href="./dataroom/calculator" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
-                        <a href="./dataroom/msg-1" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                        <a href="/dataroom/pawn.html" class="block text-center py-2 hover:bg-gray-600">1. 담보 안내</a>
+                        <a href="/dataroom/smartfarm.html" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #1 스마트팜</a>
+                        <a href="/dataroom/quarry_development.html" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #2 석산 개발 사업</a>
+                        <a href="/dataroom/newsall.html" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                        <!--
+                            <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                            -->
+                        <a href="/dataroom/calculator.html" class="block text-center py-2 hover:bg-gray-600">수익률 계산기</a>
+                        <a href="/dataroom/intro.html" class="block text-center py-2 hover:bg-gray-600">공동투자 제안서</a>
+                        <a href="/dataroom/msg-1.html" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
                     </div>
                 </div>
                 <a href="#faq" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
@@ -319,7 +343,8 @@
                     </div>
                 </div>
             </section>
-            <!-- Section 2: Real-time Investment Status -->
+
+        <!-- Section 2: Real-time Investment Status
             <section id="status" class="py-20 bg-gray-800">
                 <div class="container mx-auto px-6">
                     <div class="grid md:grid-cols-2 gap-8 md:gap-16 text-center">
@@ -338,6 +363,7 @@
                     </div>
                 </div>
             </section>
+        -->
             <!-- Section 3: The Proof -->
             <section id="proof" class="py-24">
                 <div class="container mx-auto px-6">
@@ -842,7 +868,7 @@
         <footer class="bg-gray-900 py-8">
             <div class="container mx-auto px-6 text-center text-gray-500">
                 <p class="">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
-                <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: 1688 XXXX</p>
+                <p class="">주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호 | 고객센터: <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="text-sm mt-2 text-center inline-block bg-yellow-500 text-white px-2 py-0.5 rounded-lg hover:bg-emerald-600 transition duration-300 shadow-lg"> 카카오 CS 채널</a></p>
                 <p class="mt-4 text-sm">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
             </div>
         </footer>
