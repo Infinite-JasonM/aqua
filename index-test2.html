@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>아쿠아홀딩스 - Iframe 콘텐츠 로드</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide 아이콘 로드 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.umd.js"></script>
+    
+    <!-- 폰트 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+     
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background-color: #111827;
+            /* Flexbox를 사용하여 전체 페이지 레이아웃을 구성합니다. */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 최소 높이를 화면 전체로 설정 */
+        }
+        .emerald-text { color: #10b981; } 
+        .hover\:emerald-text:hover { color: #059669; }
+        
+        /* 카카오 CS 채널 버튼의 고유 스타일 정의 */
+        .kakao-cs-btn {
+            background-color: #f7e600; 
+            color: #3c1e1e; 
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.875rem; 
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .kakao-cs-btn:hover {
+            background-color: #ede000;
+        }
+
+        /* Iframe 스타일: 헤더/푸터를 제외한 나머지 공간을 모두 차지하도록 설정 */
+        #content-iframe {
+            flex-grow: 1; /* 남은 공간을 모두 차지 */
+            width: 100%;
+            border: none;
+            /* 헤더 아래로 내용이 시작되도록 margin-top 설정 */
+            margin-top: 60px; 
+        }
+        /* Fixed Header */
+        #header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 상단 메뉴 (고정) -->
+    <header id="header-nav" class="bg-gray-900/80 backdrop-blur-sm transition-all duration-300 py-2">
+        <div class="container mx-auto px-6 flex justify-between items-center text-white">
+            <!-- 로고: 클릭 시 iframe을 초기 페이지로 로드 -->
+            <a href="main.html#hero" data-target-iframe="true" class="text-2xl font-bold emerald-text flex items-center">
+                <img src="https://aquaholdings.co.kr/아쿠아홀딩스 새 로고(배경 투명).png?text=Logo" alt="아쿠아홀딩스 로고" class="h-10 w-10 mr-2 rounded-full">아쿠아홀딩스
+            </a>
+            <!-- PC 메뉴: 모든 링크에 data-target-iframe="true" 추가 -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <!-- main.html은 초기 메인 페이지라고 가정 -->
+                <a href="main.html#hero" data-target-iframe="true" class="hover:emerald-text transition">홈</a>
+                <!-- content1.html, content2.html은 별도의 콘텐츠 페이지라고 가정 -->
+                <a href="/main.html#proof" data-target-iframe="true" class="hover:emerald-text transition">투자 실체</a>
+                <a href="/main.html#difference" data-target-iframe="true" class="hover:emerald-text transition">차별점</a>
+                <a href="/main.html#trust-safety-center" data-target-iframe="true" class="hover:emerald-text transition">신뢰와 안전</a>
+                <a href="/main.html#trust-system" data-target-iframe="true" class="hover:emerald-text transition">신뢰 시스템</a>
+                <a href="/main.html#faq" data-target-iframe="true" class="hover:emerald-text transition">FAQ</a>
+                
+                <!-- Data Room Dropdown (PC) -->
+                <div id="pc-data-room-container" class="relative group">
+                    <button id="pc-data-room-button" class="hover:emerald-text transition focus:outline-none">Data room</button>
+                    <div id="pc-data-room-submenu" class="absolute hidden bg-gray-900 border border-gray-700 rounded-md shadow-lg py-2 mt-2 w-48 right-0">
+                        <!-- Data room 링크들도 iframe을 타겟팅합니다. -->
+                        <a href="/dataroom/pawn.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">담보 안내</a>
+                        <a href="/dataroom/smartfarm.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">신규사업 #1 스마트 팜</a>
+                        <a href="/dataroom/quarry_development.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">신규사업 #2 석산 개발</a>
+                        <a href="/dataroom/newsall.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">뉴스</a>
+                        <a href="/dataroom/gallery.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">갤러리</a>
+                        <a href="/dataroom/intro.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">공동투자 제안서</a>
+                        <a href="/dataroom/msg-1.html" data-target-iframe="true" class="block px-4 py-2 hover:bg-gray-700">초대 메시지</a>
+                    </div>
+                </div>
+
+                <a href="/main.html#final-cta" data-target-iframe="true" class="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">상담 신청</a>
+            </nav>
+            <!-- 모바일 메뉴 버튼 -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </div>
+        
+        <!-- 모바일 메뉴 드롭다운 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-white">
+            <a href="/main.html#proof" data-target-iframe="true" class="block text-center py-3 hover:bg-gray-700">투자 실체</a>
+            <a href="/main.html#difference" data-target-iframe="true" class="block text-center py-3 hover:bg-gray-700">차별점</a>
+            <a href="/main.html#trust-safety-center" data-target-iframe="true" class="block text-center py-3 hover:bg-gray-700">신뢰와 안전</a>
+            <a href="/main.html#trust-system" data-target-iframe="true" class="block text-center py-3 hover:bg-gray-700">신뢰 시스템</a>
+            
+            <!-- Data Room Dropdown (Mobile) -->
+            <div id="data-room-mobile-toggle" class="relative">
+                <button id="mobile-data-room-button" class="w-full text-center py-3 hover:bg-gray-700 flex justify-center items-center gap-2">
+                    Data room
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block data-room-mobile-icon transform transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.354a.75.75 0 111.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="data-room-mobile-submenu" class="hidden bg-gray-700 text-sm">
+                    <a href="/dataroom/pawn.html" data-target-iframe="true" class="block text-center py-2 hover:bg-gray-600">1. 담보 안내</a>
+                    <a href="/dataroom/smartfarm.html" data-target-iframe="true" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #1 스마트팜</a>
+                    <a href="/dataroom/quarry_development.html" data-target-iframe="true" class="block text-center py-2 hover:bg-gray-600">2. 신규사업 #2 석산 개발 사업</a>
+                    <a href="/dataroom/newsall.html" data-target-iframe="true" class="block text-center py-2 hover:bg-gray-600">뉴스</a>
+                    <a href="/dataroom/intro.html" data-target-iframe="true" class="block text-center py-2 hover:bg-gray-600">공동투자 제안서</a>
+                    <a href="/dataroom/msg-1.html" data-target-iframe="true" class="block text-center py-2 hover:bg-gray-600">초대 메시지</a>
+                </div>
+            </div>
+            <a href="/main.html#faq" data-target-iframe="true" class="block text-center py-3 hover:bg-gray-700">FAQ</a>
+            <a href="/main.html#final-cta" data-target-iframe="true" class="block text-center py-4 bg-emerald-600 text-white hover:bg-emerald-700">투자 상담 신청</a>
+        </div>
+    </header>
+
+    <!-- 2. 중앙 콘텐츠 영역 (Iframe으로 대체) -->
+    <!-- 모든 외부 HTML 파일은 이 iframe 안에 로드됩니다. -->
+    <iframe id="content-iframe" src="main.html"></iframe>
+
+    <!-- 3. 하단 푸터 (고정) -->
+    <!-- 이 푸터는 iframe의 스크롤과 별개로 화면 하단에 위치합니다. -->
+    <footer class="bg-gray-900 py-2">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p class="text-sm md:text-base">(주)아쿠아홀딩스 | 대표: CHOI NUNA | 사업자등록번호: 372-81-03838</p>
+            <p class="mt-1/2 text-sm md:text-base">
+                주소: 서울특별시 강남구 역삼동 642-6. 성지하이츠 3차 1601호
+            </p>
+            <p class="mt-1 text-sm md:text-base flex justify-center items-center flex-wrap gap-x-2">
+                고객센터: 
+                <a href="http://pf.kakao.com/_mxavNn" target="_blank" class="kakao-cs-btn">
+                    카카오 CS 채널
+                </a>
+            </p>
+            <p class="mt-1 text-xs text-gray-500">© 2025 Aqua Holdings Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Menu and Iframe Interaction -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('content-iframe');
+            
+            // 모든 메뉴 링크를 찾아서 클릭 이벤트를 처리합니다.
+            document.querySelectorAll('a[data-target-iframe="true"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // 기본 링크 이동을 막습니다.
+                    
+                    const newSrc = link.getAttribute('href');
+                    if (newSrc) {
+                        iframe.src = newSrc; // iframe의 소스(src)만 변경합니다.
+                        
+                        // 모바일 메뉴가 열려있다면 닫습니다.
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // 1. 모바일 메뉴 토글 (기존 코드 유지)
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 2. 모바일 Data Room 드롭다운 토글 (기존 코드 유지)
+            const mobileDataRoomButton = document.getElementById('mobile-data-room-button');
+            const mobileDataRoomSubmenu = document.getElementById('data-room-mobile-submenu');
+            const mobileDataRoomIcon = document.querySelector('.data-room-mobile-icon');
+            mobileDataRoomButton.addEventListener('click', () => {
+                const isHidden = mobileDataRoomSubmenu.classList.toggle('hidden');
+                if (isHidden) {
+                    mobileDataRoomIcon.classList.remove('rotate-180');
+                } else {
+                    mobileDataRoomIcon.classList.add('rotate-180');
+                }
+            });
+
+            // 3. PC Data Room 드롭다운 (기존 코드 유지)
+            const pcDataRoomButton = document.getElementById('pc-data-room-button');
+            const pcDataRoomSubmenu = document.getElementById('pc-data-room-submenu');
+
+            pcDataRoomButton.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                pcDataRoomSubmenu.classList.toggle('hidden');
+            });
+
+            // Data Room 이외 영역 클릭 시 닫기 (기존 코드 유지)
+            document.addEventListener('click', (e) => {
+                if (pcDataRoomSubmenu && !pcDataRoomSubmenu.contains(e.target) && !pcDataRoomButton.contains(e.target)) {
+                    pcDataRoomSubmenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
